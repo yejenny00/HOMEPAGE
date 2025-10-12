@@ -1,0 +1,281 @@
+# Repo: kolmar-new-product-site
+
+This single textdoc contains the full contents for a GitHub-ready static React site (Vite) for 한국콜마 신제품 홈페이지 plus a GitHub Actions workflow for automatic deploy to GitHub Pages. Copy each file into your repository with the exact file path.
+
+---
+
+## 1) package.json
+
+```json
+{
+  "name": "kolmar-new-product-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
+```
+
+---
+
+## 2) public/index.html
+
+```html
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>한국콜마 — 신제품 런칭</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+```
+
+---
+
+## 3) src/main.jsx
+
+```jsx
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App'
+import './styles.css'
+
+createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+```
+
+---
+
+## 4) src/App.jsx
+
+```jsx
+import React from 'react'
+
+export default function App() {
+  return (
+    <div className="page">
+      <header className="hero">
+        <nav className="nav">
+          <div className="logo">KOLMAR</div>
+          <ul className="nav-links">
+            <li>Home</li>
+            <li>Product</li>
+            <li>Tech</li>
+            <li>Contact</li>
+          </ul>
+        </nav>
+        <div className="hero-content">
+          <h1 className="title">Introducing: NovaBlend™</h1>
+          <p className="subtitle">AI-optimized, nature-inspired skincare — by 한국콜마</p>
+          <div className="cta-row">
+            <a className="btn primary" href="#product">제품 보기</a>
+            <a className="btn ghost" href="#tech">기술 보기</a>
+          </div>
+        </div>
+        <div className="hero-image" aria-hidden>
+          <div className="glass-card">신제품</div>
+        </div>
+      </header>
+
+      <main>
+        <section id="product" className="section product">
+          <div className="container">
+            <div className="product-media"> 
+              <div className="product-image" />
+            </div>
+            <div className="product-copy">
+              <h2>NovaBlend™ Complex</h2>
+              <p>
+                피부 본연의 힘을 깨우는 포뮬러. 한국콜마의 연구팀이 개발한 NovaBlend™는
+                자연 유래 성분과 AI 분석을 결합하여 개인 맞춤형 피부 솔루션을 제공합니다.
+              </p>
+              <ul className="bullets">
+                <li>AI 최적화 성분 조합</li>
+                <li>저자극, 고효능 포뮬러</li>
+                <li>친환경 패키징</li>
+              </ul>
+              <a className="btn wide" href="#buy">사전예약</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="tech" className="section tech">
+          <div className="container narrow">
+            <h3>기술과 지속가능성</h3>
+            <p>
+              한국콜마의 AI 기반 성분 분석 및 Kolmarpkg.com에서 검증된 친환경 패키지를 결합한
+              차세대 제품입니다. 생산 단계부터 물류까지 탄소 발자국을 줄이는 설계를 적용했습니다.
+            </p>
+            <div className="tech-grid">
+              <div className="tech-card">
+                <h4>AI 포뮬레이션</h4>
+                <p>수천 건의 임상 및 성분 데이터를 바탕으로 안전하고 효과적인 조합을 제안합니다.</p>
+              </div>
+              <div className="tech-card">
+                <h4>지속가능 패키지</h4>
+                <p>재활용 가능한 소재와 물류 최적화를 통한 친환경 설계.</p>
+              </div>
+              <div className="tech-card">
+                <h4>글로벌 소싱</h4>
+                <p>Kolmarpkg.com의 글로벌 네트워크로 빠르고 신뢰성 높은 패키지 조달.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="section contact">
+          <div className="container">
+            <h3>Contact</h3>
+            <p>제품 관련 문의나 협업 제안은 아래 이메일로 연락 주세요.</p>
+            <p><strong>business@kolmar.co.kr</strong></p>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer">
+        <div className="container">
+          <p>© {new Date().getFullYear()} KOLMAR. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  )
+}
+```
+
+---
+
+## 5) src/styles.css
+
+```css
+/* Modern, fancy, glassmorphism + gradient theme */
+:root{
+  --bg:#0f1724;
+  --card:#0f1724cc;
+  --glass: rgba(255,255,255,0.06);
+  --accent: linear-gradient(90deg,#ff7a88,#7a7dff);
+}
+*{box-sizing:border-box}
+body,html,#root{height:100%;}
+body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;font-size:16px;background:radial-gradient(1200px 600px at 10% 10%, rgba(122,125,255,0.08), transparent),linear-gradient(180deg,#03040a,var(--bg));color:#e6eef8}
+.container{max-width:1100px;margin:0 auto;padding:48px}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:28px 48px}
+.logo{font-weight:800;letter-spacing:2px}
+.nav-links{display:flex;gap:18px;list-style:none;padding:0;margin:0}
+.nav-links li{opacity:0.9}
+.hero{position:relative;min-height:70vh;display:flex;align-items:center;padding:40px}
+.hero-content{max-width:640px}
+.title{font-size:54px;margin:0 0 12px;line-height:1.02;background: -webkit-linear-gradient(#fff, #cfe7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{margin:0 0 20px;color:rgba(230,238,248,0.8)}
+.cta-row{display:flex;gap:12px}
+.btn{display:inline-block;padding:12px 20px;border-radius:12px;text-decoration:none;font-weight:600}
+.btn.primary{background:var(--accent);box-shadow:0 6px 30px rgba(122,125,255,0.12)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08)}
+.btn.wide{display:block;margin-top:18px;padding:14px}
+.hero-image{position:absolute;right:60px;top:20px;width:360px;height:360px;display:flex;align-items:center;justify-content:center}
+.glass-card{width:260px;height:320px;border-radius:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter: blur(10px);display:flex;align-items:center;justify-content:center;font-weight:700}
+.section{padding:72px 0}
+.product .container{display:flex;gap:40px;align-items:center}
+.product-image{width:360px;height:360px;border-radius:18px;background:linear-gradient(135deg,#1b1f2a,#10131a);box-shadow:inset 0 -30px 80px rgba(0,0,0,0.5);}
+.bullets{margin:12px 0 0;padding-left:18px}
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+.tech-card{background:var(--glass);padding:20px;border-radius:12px}
+.footer{padding:28px 0;text-align:center;color:rgba(230,238,248,0.6)}
+
+@media(max-width:900px){
+  .product .container{flex-direction:column}
+  .hero-image{display:none}
+  .title{font-size:36px}
+}
+```
+
+---
+
+## 6) README.md
+
+```md
+# kolmar-new-product-site
+
+한국콜마 신제품 런칭용 깔끔하고 현대적인 디자인의 정적 React 사이트
+
+**배포**: GitHub Pages (GH Actions workflow 포함)
+
+**사용법**
+1. 레포 클론
+2. `npm install`
+3. `npm run build`
+4. `npm run preview` 또는 GitHub Actions로 자동 배포
+```
+
+---
+
+## 7) .github/workflows/gh-pages.yml
+
+```yaml
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+```
+
+---
+
+## 8) Optional: .gitignore
+
+```
+node_modules
+dist
+.env
+```
+
+---
+
+## Notes
+- 디자인은 modern + glassmorphism + gradient를 기반으로 구성했습니다.
+- Kolmarpkg.com 관련 소개 문장을 제품 페이지(기술 섹션)에 반영해 두었습니다.
+- GitHub Actions(GHA) workflow는 `main` 브랜치에 푸시되면 자동 빌드 후 `gh-pages`로 배포합니다 (peaceiris/actions-gh-pages 사용).
+
+---
+
+원하시면 이 리포를 실제로 GitHub에 push하는 방법, 커스텀 도메인 연결, 또는 추가 페이지(FAQ, Press, Downloads)도 바로 만들어 드릴게요.
