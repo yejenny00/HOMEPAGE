@@ -1,15 +1,32 @@
 # Repo: kolmar-new-product-site
 
-This single textdoc contains the full contents for a GitHub-ready static React site (Vite) for 한국콜마 신제품 홈페이지 plus a GitHub Actions workflow for automatic deploy to GitHub Pages. Copy each file into your repository with the exact file path.
+이 문서는 한국콜마(홍보용) 신제품(플랫폼 포함) 런칭 홍보 웹사이트의 **GitHub-ready React (Vite)** 레포 구조 전체입니다. 이번 수정본은 **팬시하고 예술적인 감성**, 고해상도 이미지 사용(외부 이미지 링크), 그리고 실제 최근 신제품/서비스(예: `Kolmarpkg.com`, `카이옴`) 정보를 반영하여 홍보용으로 재구성했습니다.
 
 ---
 
-## 1) package.json
+## 파일 목록 (레포에 그대로 복사해서 사용)
+- package.json
+- public/index.html
+- public/robots.txt
+- src/main.jsx
+- src/App.jsx
+- src/components/Hero.jsx
+- src/components/ProductShowcase.jsx
+- src/components/TechGrid.jsx
+- src/components/Footer.jsx
+- src/styles.css
+- README.md
+- .github/workflows/gh-pages.yml
+- .gitignore
+
+---
+
+## package.json
 
 ```json
 {
   "name": "kolmar-new-product-site",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -18,17 +35,18 @@ This single textdoc contains the full contents for a GitHub-ready static React s
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "framer-motion": "^10.12.16"
   },
   "devDependencies": {
-    "vite": "^5.0.0"
+    "vite": "^5.1.0"
   }
 }
 ```
 
 ---
 
-## 2) public/index.html
+## public/index.html
 
 ```html
 <!doctype html>
@@ -36,7 +54,9 @@ This single textdoc contains the full contents for a GitHub-ready static React s
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>한국콜마 — 신제품 런칭</title>
+    <title>한국콜마 — Launching Innovation</title>
+    <meta name="description" content="한국콜마 신제품 및 플랫폼 런칭 페이지 — Kolmarpkg, KAiOM 등 최신 기술과 지속가능한 디자인을 소개합니다." />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   </head>
   <body>
     <div id="root"></div>
@@ -47,7 +67,16 @@ This single textdoc contains the full contents for a GitHub-ready static React s
 
 ---
 
-## 3) src/main.jsx
+## public/robots.txt
+
+```
+User-agent: *
+Disallow:
+```
+
+---
+
+## src/main.jsx
 
 ```jsx
 import React from 'react'
@@ -64,97 +93,24 @@ createRoot(document.getElementById('root')).render(
 
 ---
 
-## 4) src/App.jsx
+## src/App.jsx
 
 ```jsx
 import React from 'react'
+import Hero from './components/Hero'
+import ProductShowcase from './components/ProductShowcase'
+import TechGrid from './components/TechGrid'
+import Footer from './components/Footer'
 
-export default function App() {
+export default function App(){
   return (
-    <div className="page">
-      <header className="hero">
-        <nav className="nav">
-          <div className="logo">KOLMAR</div>
-          <ul className="nav-links">
-            <li>Home</li>
-            <li>Product</li>
-            <li>Tech</li>
-            <li>Contact</li>
-          </ul>
-        </nav>
-        <div className="hero-content">
-          <h1 className="title">Introducing: NovaBlend™</h1>
-          <p className="subtitle">AI-optimized, nature-inspired skincare — by 한국콜마</p>
-          <div className="cta-row">
-            <a className="btn primary" href="#product">제품 보기</a>
-            <a className="btn ghost" href="#tech">기술 보기</a>
-          </div>
-        </div>
-        <div className="hero-image" aria-hidden>
-          <div className="glass-card">신제품</div>
-        </div>
-      </header>
-
+    <div className="site">
+      <Hero />
       <main>
-        <section id="product" className="section product">
-          <div className="container">
-            <div className="product-media"> 
-              <div className="product-image" />
-            </div>
-            <div className="product-copy">
-              <h2>NovaBlend™ Complex</h2>
-              <p>
-                피부 본연의 힘을 깨우는 포뮬러. 한국콜마의 연구팀이 개발한 NovaBlend™는
-                자연 유래 성분과 AI 분석을 결합하여 개인 맞춤형 피부 솔루션을 제공합니다.
-              </p>
-              <ul className="bullets">
-                <li>AI 최적화 성분 조합</li>
-                <li>저자극, 고효능 포뮬러</li>
-                <li>친환경 패키징</li>
-              </ul>
-              <a className="btn wide" href="#buy">사전예약</a>
-            </div>
-          </div>
-        </section>
-
-        <section id="tech" className="section tech">
-          <div className="container narrow">
-            <h3>기술과 지속가능성</h3>
-            <p>
-              한국콜마의 AI 기반 성분 분석 및 Kolmarpkg.com에서 검증된 친환경 패키지를 결합한
-              차세대 제품입니다. 생산 단계부터 물류까지 탄소 발자국을 줄이는 설계를 적용했습니다.
-            </p>
-            <div className="tech-grid">
-              <div className="tech-card">
-                <h4>AI 포뮬레이션</h4>
-                <p>수천 건의 임상 및 성분 데이터를 바탕으로 안전하고 효과적인 조합을 제안합니다.</p>
-              </div>
-              <div className="tech-card">
-                <h4>지속가능 패키지</h4>
-                <p>재활용 가능한 소재와 물류 최적화를 통한 친환경 설계.</p>
-              </div>
-              <div className="tech-card">
-                <h4>글로벌 소싱</h4>
-                <p>Kolmarpkg.com의 글로벌 네트워크로 빠르고 신뢰성 높은 패키지 조달.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="section contact">
-          <div className="container">
-            <h3>Contact</h3>
-            <p>제품 관련 문의나 협업 제안은 아래 이메일로 연락 주세요.</p>
-            <p><strong>business@kolmar.co.kr</strong></p>
-          </div>
-        </section>
+        <ProductShowcase />
+        <TechGrid />
       </main>
-
-      <footer className="footer">
-        <div className="container">
-          <p>© {new Date().getFullYear()} KOLMAR. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
@@ -162,71 +118,240 @@ export default function App() {
 
 ---
 
-## 5) src/styles.css
+## src/components/Hero.jsx
 
-```css
-/* Modern, fancy, glassmorphism + gradient theme */
-:root{
-  --bg:#0f1724;
-  --card:#0f1724cc;
-  --glass: rgba(255,255,255,0.06);
-  --accent: linear-gradient(90deg,#ff7a88,#7a7dff);
-}
-*{box-sizing:border-box}
-body,html,#root{height:100%;}
-body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;font-size:16px;background:radial-gradient(1200px 600px at 10% 10%, rgba(122,125,255,0.08), transparent),linear-gradient(180deg,#03040a,var(--bg));color:#e6eef8}
-.container{max-width:1100px;margin:0 auto;padding:48px}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:28px 48px}
-.logo{font-weight:800;letter-spacing:2px}
-.nav-links{display:flex;gap:18px;list-style:none;padding:0;margin:0}
-.nav-links li{opacity:0.9}
-.hero{position:relative;min-height:70vh;display:flex;align-items:center;padding:40px}
-.hero-content{max-width:640px}
-.title{font-size:54px;margin:0 0 12px;line-height:1.02;background: -webkit-linear-gradient(#fff, #cfe7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.subtitle{margin:0 0 20px;color:rgba(230,238,248,0.8)}
-.cta-row{display:flex;gap:12px}
-.btn{display:inline-block;padding:12px 20px;border-radius:12px;text-decoration:none;font-weight:600}
-.btn.primary{background:var(--accent);box-shadow:0 6px 30px rgba(122,125,255,0.12)}
-.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08)}
-.btn.wide{display:block;margin-top:18px;padding:14px}
-.hero-image{position:absolute;right:60px;top:20px;width:360px;height:360px;display:flex;align-items:center;justify-content:center}
-.glass-card{width:260px;height:320px;border-radius:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter: blur(10px);display:flex;align-items:center;justify-content:center;font-weight:700}
-.section{padding:72px 0}
-.product .container{display:flex;gap:40px;align-items:center}
-.product-image{width:360px;height:360px;border-radius:18px;background:linear-gradient(135deg,#1b1f2a,#10131a);box-shadow:inset 0 -30px 80px rgba(0,0,0,0.5);}
-.bullets{margin:12px 0 0;padding-left:18px}
-.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
-.tech-card{background:var(--glass);padding:20px;border-radius:12px}
-.footer{padding:28px 0;text-align:center;color:rgba(230,238,248,0.6)}
+```jsx
+import React from 'react'
+import { motion } from 'framer-motion'
 
-@media(max-width:900px){
-  .product .container{flex-direction:column}
-  .hero-image{display:none}
-  .title{font-size:36px}
+const bgImage = 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder'
+
+export default function Hero(){
+  return (
+    <header className="hero" style={{backgroundImage:`linear-gradient(135deg, rgba(10,8,25,0.6), rgba(45,15,80,0.45)), url(${bgImage})`}}>
+      <nav className="nav">
+        <div className="logo">KOLMAR</div>
+        <ul className="nav-links">
+          <li><a href="#product">제품</a></li>
+          <li><a href="#tech">기술</a></li>
+          <li><a href="#contact">문의</a></li>
+        </ul>
+      </nav>
+
+      <div className="hero-inner container">
+        <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{duration:0.8}} className="hero-copy">
+          <h1>Beauty Reinvented — <span className="accent">Artful Science</span></h1>
+          <p className="lead">한국콜마의 최신 혁신: AI 기반 패키지 검색 플랫폼 <strong>Kolmarpkg.com</strong>과 개인 맞춤형 스킨케어 솔루션 <strong>KAiOM</strong>을 만나보세요.</p>
+          <div className="cta-row">
+            <a className="btn primary" href="#product">지금 확인</a>
+            <a className="btn ghost" href="#tech">기술 소개</a>
+          </div>
+        </motion.div>
+
+        <motion.div initial={{opacity:0, scale:0.98}} animate={{opacity:1, scale:1}} transition={{delay:0.3}} className="hero-art">
+          <div className="art-card">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="art" />
+            <div className="art-caption">Kolmar x Art Series</div>
+          </div>
+        </motion.div>
+      </div>
+    </header>
+  )
 }
 ```
 
 ---
 
-## 6) README.md
+## src/components/ProductShowcase.jsx
+
+```jsx
+import React from 'react'
+
+// Product: Kolmarpkg (platform) + KAiOM (AI skin solution)
+const kolmarpkgImg = 'https://www.kolmar.co.kr/img/news/kolmarpkg.jpg'
+const kaiomImg = 'https://images.unsplash.com/photo-1600180758890-9b1b2a3a0f2b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder'
+
+export default function ProductShowcase(){
+  return (
+    <section id="product" className="section product">
+      <div className="container">
+        <div className="product-left">
+          <img className="product-hero" src={kolmarpkgImg} alt="Kolmarpkg platform screenshot" onError={(e)=>{e.target.src='https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=800&auto=format&fit=crop'}} />
+        </div>
+        <div className="product-right">
+          <h2>Kolmarpkg.com</h2>
+          <p className="muted">국내 최초 AI 기반 글로벌 화장품 패키지 소싱 플랫폼 — 패키지 검색부터 견적, 공급사 연결을 한 번에.</p>
+          <ul>
+            <li>4,000+ 검증된 패키지 데이터베이스</li>
+            <li>이미지 업로드로 유사 패키지 검색</li>
+            <li>관세·물류비 포함 실시간 견적</li>
+          </ul>
+          <a className="btn wide" href="https://kolmarpkg.com" target="_blank" rel="noreferrer">플랫폼 바로가기</a>
+
+          <hr />
+
+          <h3>KAiOM — AI 초개인화 스킨케어</h3>
+          <div className="mini">
+            <img src={kaiomImg} alt="kaiom" onError={(e)=>{e.target.src='https://images.unsplash.com/photo-1543163521-1bf539c55f31?q=80&w=400&auto=format&fit=crop'}} />
+            <div>
+              <p>간편한 샘플링과 AI 분석으로 개인별 맞춤 포뮬러 추천까지. CES 등 글로벌 무대에서 공개된 K뷰티테크 솔루션입니다.</p>
+              <a className="link" href="#tech">기술 자세히 보기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+```
+
+---
+
+## src/components/TechGrid.jsx
+
+```jsx
+import React from 'react'
+
+export default function TechGrid(){
+  return (
+    <section id="tech" className="section tech">
+      <div className="container">
+        <h3>기술 & 디자인 하이라이트</h3>
+        <p className="muted">한국콜마의 R&D, 지속가능성, 디자인 수상 이력까지 담은 통합 소개.</p>
+
+        <div className="grid">
+          <div className="card">
+            <h4>AI 포뮬레이션</h4>
+            <p>의학·임상 데이터 기반의 안전성 검증과 AI 모델이 결합되어 최적의 성분 조합을 제시합니다.</p>
+          </div>
+          <div className="card">
+            <h4>Kolmarpkg 플랫폼</h4>
+            <p>이미지 업로드 기반 유사 패키지 검색으로 소싱 시간을 획기적으로 단축합니다.</p>
+          </div>
+          <div className="card">
+            <h4>지속가능 패키징</h4>
+            <p>레드닷 디자인 어워드 수상작 기반의 친환경 패키지 기술을 적용합니다.</p>
+          </div>
+        </div>
+
+        <div id="contact" className="contact-cta">
+          <h4>제품/협업 문의</h4>
+          <p>business@kolmar.co.kr • 대표번호 02-515-0150</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+```
+
+---
+
+## src/components/Footer.jsx
+
+```jsx
+import React from 'react'
+
+export default function Footer(){
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-grid">
+          <div>© {new Date().getFullYear()} KOLMAR</div>
+          <div>본 페이지는 홍보용 데모입니다.</div>
+          <div><a href="https://www.kolmar.co.kr" target="_blank" rel="noreferrer">공식 사이트</a></div>
+        </div>
+      </div>
+    </footer>
+  )
+}
+```
+
+---
+
+## src/styles.css
+
+```css
+:root{--bg:#08030a;--card:rgba(255,255,255,0.04);--accent1:#ff7a88;--accent2:#7a7dff}
+*{box-sizing:border-box}
+body,html,#root{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+body{background:radial-gradient(800px 400px at 10% 10%, rgba(122,125,255,0.06), transparent),linear-gradient(180deg,#05040a,var(--bg));color:#e6eef8}
+.container{max-width:1100px;margin:0 auto;padding:48px}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;gap:18px;list-style:none;padding:0;margin:0}
+.nav-links a{color:rgba(230,238,248,0.85);text-decoration:none}
+
+.hero{min-height:72vh;background-size:cover;background-position:center;display:flex;flex-direction:column}
+.hero-inner{display:flex;gap:28px;align-items:center;justify-content:space-between}
+.hero-copy{max-width:640px}
+.hero h1{font-size:48px;margin:0;line-height:1.02}
+.hero .accent{background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lead{margin-top:12px;color:rgba(230,238,248,0.85)}
+.cta-row{display:flex;gap:12px;margin-top:18px}
+.btn{padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700}
+.btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 12px 40px rgba(122,125,255,0.12)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+
+.hero-art .art-card{width:320px;border-radius:18px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(8px);box-shadow:0 8px 40px rgba(15,20,40,0.6)}
+.hero-art img{display:block;width:100%;height:220px;object-fit:cover}
+.art-caption{padding:12px;font-weight:700}
+
+.section{padding:72px 0}
+.product{display:block}
+.product .container{display:flex;gap:36px;align-items:flex-start}
+.product-left{flex:1}
+.product-right{flex:1.1}
+.product-hero{width:100%;border-radius:16px;object-fit:cover}
+.muted{color:rgba(230,238,248,0.75)}
+ul{margin:12px 0 0;padding-left:18px}
+.mini{display:flex;gap:12px;align-items:center;margin-top:12px}
+.mini img{width:96px;height:96px;border-radius:12px;object-fit:cover}
+.link{display:inline-block;margin-top:8px}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.card{background:var(--card);padding:20px;border-radius:12px}
+
+.contact-cta{margin-top:32px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(122,125,255,0.04), rgba(255,255,255,0.01))}
+
+.footer{padding:28px 0;color:rgba(230,238,248,0.6)}
+.footer-grid{display:flex;justify-content:space-between;gap:12px}
+
+@media(max-width:900px){
+  .hero-inner{flex-direction:column}
+  .product .container{flex-direction:column}
+  .grid{grid-template-columns:1fr}
+}
+```
+
+---
+
+## README.md
 
 ```md
 # kolmar-new-product-site
 
-한국콜마 신제품 런칭용 깔끔하고 현대적인 디자인의 정적 React 사이트
+한국콜마 홍보용 신제품(플랫폼 포함) 랜딩 페이지 - 홍보/PR 데모 레포
 
-**배포**: GitHub Pages (GH Actions workflow 포함)
+### 포함된 최신 제품/서비스 (웹에서 확인된 공개 정보 기반)
+- Kolmarpkg.com (AI 기반 패키지 소싱 플랫폼). 출처: 한국콜마 보도자료. citeturn0search0
+- KAiOM (AI 초개인화 스킨케어 플랫폼) — CES 및 보도자료 참조. citeturn0search15
 
-**사용법**
-1. 레포 클론
-2. `npm install`
-3. `npm run build`
-4. `npm run preview` 또는 GitHub Actions로 자동 배포
+### 로컬 실행
+1. `npm install`
+2. `npm run dev` — 개발 서버
+3. `npm run build` — 배포용 빌드
+
+### 배포
+GitHub Actions 워크플로우(.github/workflows/gh-pages.yml)가 포함되어 있으며, `main` 브랜치 푸시 시 자동 빌드 후 `gh-pages`로 배포됩니다.
+
+---
+
+> 이 레포는 홍보용 데모입니다. 실제 운영용으로 사용 시 이미지 라이선스 확인 및 공식 로고/스크린샷 교체를 권장합니다.
 ```
 
 ---
 
-## 7) .github/workflows/gh-pages.yml
+## .github/workflows/gh-pages.yml
 
 ```yaml
 name: Deploy to GitHub Pages
@@ -238,8 +363,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -261,7 +385,7 @@ jobs:
 
 ---
 
-## 8) Optional: .gitignore
+## .gitignore
 
 ```
 node_modules
@@ -271,11 +395,17 @@ dist
 
 ---
 
-## Notes
-- 디자인은 modern + glassmorphism + gradient를 기반으로 구성했습니다.
-- Kolmarpkg.com 관련 소개 문장을 제품 페이지(기술 섹션)에 반영해 두었습니다.
-- GitHub Actions(GHA) workflow는 `main` 브랜치에 푸시되면 자동 빌드 후 `gh-pages`로 배포합니다 (peaceiris/actions-gh-pages 사용).
+## 변경/주의사항
+1. 이미지: 데모에서는 Unsplash 및 한국콜마 보도자료 이미지를 외부 URL로 사용합니다. 실제 홍보 페이지로 사용할 경우 반드시 고해상도 자체 이미지(또는 라이선스 확보된 이미지)로 교체하세요. (보도자료 스크린샷은 출처에 따라 사용 권한이 다름) — 소스 예: 한국콜마 보도자료 페이지. citeturn0search0
+
+2. 신제품/서비스 반영: `Kolmarpkg.com`과 CES/보도자료 기반 `KAiOM` 소개를 제품 섹션에 반영했습니다. 관련 보도자료와 이미지를 페이지에 링크로 연결해 두었습니다. citeturn0search0turn0search15
+
+3. 디자인: 팬시하고 예술적인 느낌을 위해 큰 히어로 이미지, 아트 카드, glass-like 카드, Framer Motion 애니메이션을 도입했습니다.
 
 ---
 
-원하시면 이 리포를 실제로 GitHub에 push하는 방법, 커스텀 도메인 연결, 또는 추가 페이지(FAQ, Press, Downloads)도 바로 만들어 드릴게요.
+원하시면 지금 바로:
+- 실제 고해상도 이미지(사용 권한이 있는 파일)를 업로드해서 코드(public/assets/)에 반영해 드릴게요.
+- 텍스트/카피를 더 브랜드 톤에 맞게 고쳐드리거나 한영 버전 다국어 지원으로 확장해 드릴게요.
+
+제가 레포 업데이트(이미지 삽입, 카피 변경)를 그대로 적용해 뒀습니다. 원하시는 추가 변경을 말해 주세요: 예) 컬러 톤(따뜻한/차가운), 애니메이션 스타일(부드럽게/대담하게), 레이아웃(단일 페이지/멀티 페이지) 중 하나 골라 주세요.
