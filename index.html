@@ -1,239 +1,423 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zion | Bring Out the Radiance</title>
-  <meta name="description" content="Zion - 혁신적 합성소재 '시젠' 기반의 프리미엄 헬스·뷰티 솔루션" />
-  <meta property="og:title" content="Zion - Bring Out the Radiance" />
-  <meta property="og:description" content="시젠(SiO2 + ZnO)으로 안전성과 효능을 동시에. 탈모방지 샴푸·스킨케어 라인 런칭" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#0b1020;--card:#0f1724;--muted:#98a3b3;--accent:#ffd166;--accent2:#6be4ff}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Montserrat,system-ui,Arial;background:linear-gradient(180deg,#051127 0%, #081430 60%, #071021 100%);color:#f2f7fb}
-    a{color:inherit}
-    .container{max-width:1100px;margin:0 auto;padding:40px 20px}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zion - 본질의 빛을 회복시키다</title>
+    <!-- Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Pretendard Font --><link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        /* Pretendard for all text */
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #F8F8F8; /* Light gray background */
+            color: #2F2F2F; /* Dark gray text */
+            line-height: 1.6;
+        }
+        /* Custom Colors & Buttons */
+        .text-zion-dark { color: #2F2F2F; }
+        .text-zion-medium { color: #7A7A7A; }
+        .text-zion-light { color: #D1D1D1; }
+        .bg-zion-background { background-color: #F8F8F8; }
+        .bg-zion-section-bg { background-color: #F2F2F2; }
+        .bg-zion-accent-green-light { background-color: #E6F4EA; }
+        .text-zion-accent-green { color: #388E3C; } /* Darker green for text */
+        .border-zion-accent-green { border-color: #A8D2B4; } /* Soft green border */
 
-    header{display:flex;justify-content:space-between;align-items:center}
-    .logo{display:flex;gap:12px;align-items:center}
-    .logo-mark{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffb86b);display:grid;place-items:center;color:#081322;font-weight:800;font-family:Playfair Display}
-    nav{display:flex;gap:12px}
-    .nav-link{padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04)}
-    .btn-primary{padding:10px 16px;border-radius:12px;background:linear-gradient(90deg,var(--accent),#ffb86b);color:#081322;border:none;font-weight:700}
+        .btn-primary {
+            background-color: #2F2F2F;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary:hover { background-color: #4A4A4A; }
+        .btn-secondary {
+            background-color: white;
+            color: #2F2F2F;
+            border: 1px solid #D1D1D1;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-secondary:hover { background-color: #F0F0F0; }
 
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:32px}
-    .eyebrow{color:var(--muted);letter-spacing:2px;font-size:13px}
-    h1{font-family:Playfair Display;font-weight:700;font-size:44px;line-height:1.04;margin:6px 0}
-    p.lead{color:var(--muted);max-width:640px}
-    .cta-row{display:flex;gap:12px;margin-top:18px}
+        /* WHY US section specific styles */
+        .why-us-item {
+            position: relative;
+            background-color: white;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            min-height: 160px; /* Ensure consistent height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid #E0E0E0; /* Light border */
+        }
+        .why-us-item::before {
+            content: attr(data-number);
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #E0E0E0; /* Light gray number */
+            line-height: 1;
+        }
+        .why-us-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
 
-    .mock{border-radius:18px;overflow:hidden;box-shadow:0 24px 80px rgba(2,6,23,0.6);}
-    .mock img{width:100%;height:100%;object-fit:cover;display:block}
-
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
-    .card{background:rgba(255,255,255,0.03);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-    .card h4{margin:0 0 6px}
-    .muted{color:var(--muted);font-size:14px}
-
-    .section{margin-top:44px}
-    .flex{display:flex;gap:16px;align-items:center}
-
-    .roadmap{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}
-    .step{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.01));padding:14px;border-radius:10px;text-align:center;border:1px solid rgba(255,255,255,0.02)}
-    .step small{display:block;color:var(--muted);margin-top:6px}
-
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
-    .gallery img{width:100%;height:220px;object-fit:cover;border-radius:10px}
-
-    .cta-strip{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradient(90deg,rgba(107,228,255,0.06),rgba(255,209,102,0.06));display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(255,255,255,0.02)}
-
-    footer{margin-top:40px;color:var(--muted);font-size:13px;padding-bottom:40px}
-
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .roadmap{grid-template-columns:repeat(2,1fr)}
-      .two-col{grid-template-columns:1fr}
-    }
-    @media (max-width:560px){h1{font-size:30px}}
-
-  </style>
+        /* Card Overlay for categories/products */
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+        }
+        .group:hover .card-overlay {
+            background-color: rgba(0,0,0,0.4);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'zion-dark': '#2F2F2F',
+                        'zion-medium': '#7A7A7A',
+                        'zion-light': '#D1D1D1',
+                        'zion-background': '#F8F8F8',
+                        'zion-section-bg': '#F2F2F2',
+                        'zion-accent-green': '#A8D2B4', /* Soft green for highlights */
+                        'zion-accent-text-green': '#388E3C', /* Darker green for text */
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <div class="logo">
-        <div class="logo-mark">Z</div>
-        <div>
-          <div style="font-weight:700">Zion</div>
-          <div class="muted" style="font-size:13px;margin-top:4px">Bring Out the Radiance</div>
+<body class="text-zion-dark">
+
+    <!-- Header & Navigation --><header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold tracking-tight">ZION</h1>
+            <nav class="hidden md:block">
+                <a href="#about" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">브랜드 스토리</a>
+                <a href="#why-us" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">우리의 차별점</a>
+                <a href="#products" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">제품 & 카테고리</a>
+                <a href="#roadmap" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">로드맵</a>
+                <a href="#contact" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">문의</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="text-zion-dark hover:text-zion-medium transition duration-300 text-xl">&#x1F50D;</a> <!-- Search Icon --><button class="btn-primary">
+                    SHOP
+                </button>
+            </div>
         </div>
-      </div>
-      <nav>
-        <a class="nav-link" href="#about">회사개요</a>
-        <a class="nav-link" href="#solution">솔루션</a>
-        <a class="nav-link" href="#roadmap">로드맵</a>
-        <a class="nav-link" href="#contact">문의</a>
-        <a class="btn-primary" href="#preorder">사전예약</a>
-      </nav>
     </header>
 
     <main>
-      <section class="hero">
-        <div>
-          <div class="eyebrow">NEW · INNOVATION</div>
-          <h1>Zion — 시젠으로 되찾는 본연의 빛</h1>
-          <p class="lead">혁신적 합성소재 <strong>시젠(SiO₂ + ZnO)</strong>으로 안전성과 효능을 동시에 실현합니다. 탈모방지 샴푸에서 시작해 스킨케어와 헬스케어까지, Zion은 과학으로 본질의 빛을 회복시킵니다.</p>
-
-          <div class="cta-row">
-            <a class="btn-primary" href="#preorder">사전예약 / 문의</a>
-            <a class="nav-link" href="#roadmap">5개년 로드맵 보기</a>
-          </div>
-
-          <div class="grid-3">
-            <div class="card">
-              <h4>핵심기술</h4>
-              <div class="muted">시젠(SiO₂ + ZnO): 부작용 최소화 + 효능 강화</div>
+        <!-- 1. Hero Section (Left text, Right Image/Video) --><section class="bg-zion-background py-10 md:py-0">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row h-[80vh] min-h-[600px] overflow-hidden">
+                <!-- Left Panel: Text & CTA --><div class="md:w-1/2 flex flex-col justify-center p-8 md:p-16">
+                    <p class="text-lg font-medium tracking-wide mb-3 text-zion-medium">Zion's Core Innovation</p>
+                    <h2 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+                        과학을 통해<br>
+                        본질의 빛을 <span class="text-zion-accent-text-green">회복</span>시키다
+                    </h2>
+                    <p class="text-xl mb-8 text-zion-medium font-light">
+                        부작용 없는 '진짜 효과'를 위한 혁신, 시젠(SiZen)
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#products" class="btn-primary">
+                            신제품 보러가기
+                        </a>
+                        <a href="#si-zen" class="btn-secondary">
+                            SiZen 기술 알아보기
+                        </a>
+                    </div>
+                </div>
+                <!-- Right Panel: Image/Video --><div class="md:w-1/2 flex items-center justify-center bg-gray-100 overflow-hidden relative">
+                    <img src="https://placehold.co/1000x800/EFEFEF/7A7A7A?text=Beautiful+Skin+Model" alt="Product Showcase" class="w-full h-full object-cover">
+                    <div class="absolute bottom-6 right-6 p-3 bg-white rounded-lg shadow-lg flex items-center space-x-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <span class="text-sm font-medium text-zion-dark">지금 바로 경험하세요!</span>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-              <h4>사업분야</h4>
-              <div class="muted">스킨케어 · 탈모방지 샴푸 · 기능성 화장품 · 헬스케어</div>
+        </section>
+
+        <!-- 2. About Us / Brand Story (Adapted from reference with focus on problem) --><section id="about" class="py-16 md:py-24 bg-zion-section-bg">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Left: Text --><div class="text-left">
+                        <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Story</p>
+                        <h3 class="text-4xl font-extrabold mb-6">
+                            효과와 안전성, 두 마리 토끼를 잡다
+                        </h3>
+                        <p class="text-lg mb-6 text-zion-medium">
+                            현재 헬스·뷰티 시장은 "효과"와 "안전성"이라는 두 가지 과제를 동시에 안고 있습니다. 기존 제품은 효능은 있으나 부작용이 따르거나, 안전성을 강화하면 효능이 약화되는 문제가 존재합니다.
+                        </p>
+                        <p class="text-lg font-medium mb-6">
+                            소비자들은 **"부작용 없는 진짜 효과"**를 원하지만, 이를 충족하는 제품은 부족한 상황입니다. Zion은 이 문제에 대한 해답을 제시합니다.
+                        </p>
+                        <a href="#why-us" class="inline-flex items-center text-zion-dark font-medium hover:text-zion-medium transition duration-300">
+                            Zion의 해결책 알아보기 <span class="ml-2 text-xl">&rarr;</span>
+                        </a>
+                    </div>
+                    <!-- Right: Supporting Images --><div class="space-y-6">
+                        <div class="h-60 rounded-xl overflow-hidden shadow-lg">
+                            <img src="https://placehold.co/700x400/D9D9D9/7A7A7A?text=Consumer+Dilemma" alt="Consumer Dilemma" class="w-full h-full object-cover">
+                        </div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="h-40 rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://placehold.co/350x250/D9D9D9/7A7A7A?text=Before+After+Skin" alt="Skin improvement" class="w-full h-full object-cover">
+                            </div>
+                            <div class="h-40 rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://placehold.co/350x250/D9D9D9/7A7A7A?text=Safe+Ingredients" alt="Safe Ingredients" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-              <h4>비전</h4>
-              <div class="muted">과학으로 본질의 빛을 회복시키다</div>
+        </section>
+
+        <!-- 3. Why Us? / Our Differentiation (Reference-inspired circle layout) --><section id="why-us" class="py-16 md:py-24 bg-white text-center">
+            <div class="max-w-7xl mx-auto px-4">
+                <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Core Values</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-12">
+                    왜 Zion인가요?
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative max-w-5xl mx-auto">
+                    <!-- Central Text "WHY US" --><div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10 hidden md:flex">
+                        <div class="w-64 h-64 flex items-center justify-center bg-zion-accent-green rounded-full opacity-10">
+                            <span class="text-4xl font-bold text-zion-dark opacity-80">WHY US?</span>
+                        </div>
+                    </div>
+
+                    <!-- WHY US Item 1 --><div class="why-us-item" data-number="01">
+                        <p class="why-us-title">혁신적 합성소재 (SiZen)</p>
+                        <p class="text-sm text-zion-medium">SiO₂ + ZnO 복합 기술로 부작용 없는 '진짜 효과'를 제공합니다.</p>
+                    </div>
+
+                    <!-- WHY US Item 2 --><div class="why-us-item md:mt-16" data-number="02">
+                        <p class="why-us-title">과학적 진정성</p>
+                        <p class="text-sm text-zion-medium">철저한 임상 및 시험 데이터를 기반으로, 신뢰할 수 있는 효과를 약속합니다.</p>
+                    </div>
+
+                    <!-- WHY US Item 3 --><div class="why-us-item" data-number="03">
+                        <p class="why-us-title">범용성 및 확장성</p>
+                        <p class="text-sm text-zion-medium">뷰티·헬스케어를 넘어 의약·바이오 분야로 무한한 적용 가능성을 가집니다.</p>
+                    </div>
+
+                    <!-- WHY US Item 4 --><div class="why-us-item md:mt-16" data-number="04">
+                        <p class="why-us-title">본질의 빛 회복</p>
+                        <p class="text-sm text-zion-medium">지친 삶과 제품에 생기를 불어넣어, 모두가 자기답게 빛나는 세상을 만듭니다.</p>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
+        </section>
 
-        <div class="mock">
-          <img src="https://picsum.photos/900/1200?random=12" alt="Zion Product"/>
-        </div>
-      </section>
-
-      <section id="about" class="section">
-        <div class="card">
-          <h3 style="margin-top:0">회사 개요</h3>
-          <p class="muted">브랜드명: Zion · 핵심기술: 시젠(SiO₂ + ZnO) · 사업분야: 헬스·뷰티케어 솔루션
-          <br><br><strong>비전:</strong> 과학을 통해 본질의 빛을 회복시키고, 모두가 자기답게 빛나는 세상을 만든다.</p>
-        </div>
-
-        <div style="display:flex;gap:16px;margin-top:12px;flex-wrap:wrap">
-          <div class="card" style="flex:1;min-width:240px">
-            <h4>사업 배경</h4>
-            <p class="muted">효능과 안전성의 트레이드오프 문제. 소비자는 '부작용 없는 진짜 효과'를 원합니다.</p>
-          </div>
-          <div class="card" style="flex:1;min-width:240px">
-            <h4>문제 정의</h4>
-            <p class="muted">소비자: 부작용 없는 기능성 제품 수요 ↑ / 기업: 차별화와 신뢰 확보 필요</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="solution" class="section">
-        <h3>솔루션 — 시젠(SiO₂ + ZnO)</h3>
-        <div class="two-col">
-          <div>
-            <div class="card">
-              <h4>무엇이 다른가?</h4>
-              <p class="muted">• 부작용 제거: 자극/트러블 요소 보완
-• 효능 강화: 탈모 방지, 피부 개선 등 목적 극대화
-• 범용성: 샴푸·스킨케어·의약·헬스케어 적용 가능
-
-시젠은 제품을 '완전한 제품'으로 진화시키는 촉매제입니다.</p>
+        <!-- 4. Core Solution - SiZen (Detailed) --><section id="si-zen" class="py-16 md:py-24 bg-zion-section-bg">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Core Technology</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-12">
+                    SiZen: 차이를 만드는 핵심 소재
+                </h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-left space-y-6">
+                        <p class="text-xl font-medium text-zion-dark leading-relaxed">
+                            시젠(SiO₂ + ZnO)은 기존 제품의 한계를 극복하고 본연의 목적을 완전하게 실현하는 혁신적 합성소재입니다.
+                        </p>
+                        <ul class="space-y-4 text-lg text-zion-medium">
+                            <li class="flex items-start">
+                                <span class="text-zion-dark text-2xl mr-3">✓</span>
+                                <div><strong class="font-semibold">부작용 제거:</strong> 기존 원료가 가진 자극/트러블 요소를 완벽하게 보완하여 안전합니다.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-zion-dark text-2xl mr-3">✓</span>
+                                <div><strong class="font-semibold">효능 강화:</strong> 탈모방지, 피부 개선 등 본래 목적을 극대화하여 '진짜 효과'를 체감하게 합니다.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-zion-dark text-2xl mr-3">✓</span>
+                                <div><strong class="font-semibold">광범위한 적용:</strong> 샴푸, 스킨케어, 의약·헬스케어 등 다양한 분야에 적용 가능한 범용성.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="h-[400px] rounded-xl overflow-hidden shadow-xl">
+                        <img src="https://placehold.co/800x600/D1D1D1/7A7A7A?text=SiZen+Molecular+Illustration" alt="SiZen illustration" class="w-full h-full object-cover">
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div style="margin-top:12px" class="card">
-              <h4>핵심 가치</h4>
-              <p class="muted">Brilliance · Revitalization · Connection · Integrity · Innovation</p>
+
+        <!-- 5. Product Categories (Visual Expansion Strategy - like reference image) --><section id="products" class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Explore Our Solutions</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-12">
+                    Zion의 제품 카테고리
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- Category 1: 뷰티 & 퍼스널 케어 (Larger Card) --><a href="#" class="group relative h-96 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/800x900/D9D9D9/7A7A7A?text=Beauty+%26+Personal+Care" alt="Beauty & Personal Care" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="card-overlay">
+                            <div>
+                                <p class="text-white text-base uppercase font-medium mb-1">Step 1 & 2 Focus</p>
+                                <h3 class="text-white text-4xl font-extrabold">뷰티 & 퍼스널 케어</h3>
+                                <span class="text-white text-sm font-light mt-2">탈모방지 샴푸, 스킨케어, 기능성 화장품</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Category 2: 헬스케어 & 웰니스 (Smaller Card) --><a href="#" class="group relative h-96 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/800x900/D9D9D9/7A7A7A?text=Healthcare+%26+Wellness" alt="Healthcare & Wellness" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="card-overlay">
+                            <div>
+                                <p class="text-white text-base uppercase font-medium mb-1">Step 3 & 4 Focus</p>
+                                <h3 class="text-white text-4xl font-extrabold">헬스케어 & 웰니스</h3>
+                                <span class="text-white text-sm font-light mt-2">예방의학, 건강보조제, 의료기기</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Additional Image Row (like reference) --><div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <a href="#" class="group relative h-64 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/600x400/D9D9D9/7A7A7A?text=New+Shampoo+Line" alt="New Shampoo Line" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="card-overlay">
+                            <p class="text-white text-xl font-bold border-b-2 border-white pb-1">탈모방지 신제품</p>
+                        </div>
+                    </a>
+                    <a href="#" class="group relative h-64 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/600x400/D9D9D9/7A7A7A?text=Functional+Cosmetics" alt="Functional Cosmetics" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="card-overlay">
+                            <p class="text-white text-xl font-bold border-b-2 border-white pb-1">기능성 화장품</p>
+                        </div>
+                    </a>
+                    <a href="#" class="group relative h-64 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/600x400/D9D9D9/7A7A7A?text=Bio+%26+Materials" alt="Bio & Materials" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="card-overlay">
+                            <p class="text-white text-xl font-bold border-b-2 border-white pb-1">바이오 소재</p>
+                        </div>
+                    </a>
+                </div>
+
+                <a href="#" class="btn-secondary mt-8">
+                    모든 제품 살펴보기
+                </a>
             </div>
-          </div>
+        </section>
+        
+        <!-- 6. 5-Year Roadmap (Simplified and styled to fit) --><section id="roadmap" class="py-16 md:py-24 bg-zion-section-bg">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Future</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-12">
+                    Zion 5개년 로드맵
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                    <!-- Year 1-2 --><div class="p-8 bg-white rounded-xl shadow-lg border border-gray-100">
+                        <span class="text-4xl font-extrabold text-zion-accent-text-green mb-4 block">1-2년차</span>
+                        <h4 class="text-2xl font-bold mb-3">기반 구축 & 시장 진입</h4>
+                        <p class="text-base text-zion-medium mb-2">
+                            핵심 목표: 기술 신뢰성 확보, 초기 시장 진입 및 브랜드 구축
+                        </p>
+                        <ul class="list-disc list-inside text-sm text-zion-medium space-y-1">
+                            <li>시젠 특허 등록, 임상 데이터 확보</li>
+                            <li>탈모방지 샴푸, 스킨케어 파일럿 출시</li>
+                            <li>D2C 플랫폼 론칭, 해외 초기 진출</li>
+                        </ul>
+                    </div>
+                    <!-- Year 3-4 --><div class="p-8 bg-white rounded-xl shadow-lg border border-gray-100">
+                        <span class="text-4xl font-extrabold text-zion-accent-text-green mb-4 block">3-4년차</span>
+                        <h4 class="text-2xl font-bold mb-3">글로벌 확장 & 다각화</h4>
+                        <p class="text-base text-zion-medium mb-2">
+                            핵심 목표: 글로벌 프리미엄 브랜드 정착, 헬스·바이오 영역 확장
+                        </p>
+                        <ul class="list-disc list-inside text-sm text-zion-medium space-y-1">
+                            <li>FDA, CE 등 글로벌 인증 확보</li>
+                            <li>글로벌 R&D 협력, 학술 논문 발표</li>
+                            <li>건강보조제, 의료기기 적용 연구</li>
+                        </ul>
+                    </div>
+                    <!-- Year 5 --><div class="p-8 bg-white rounded-xl shadow-lg border border-gray-100">
+                        <span class="text-4xl font-extrabold text-zion-accent-text-green mb-4 block">5년차</span>
+                        <h4 class="text-2xl font-bold mb-3">글로벌 리더십 & 플랫폼화</h4>
+                        <p class="text-base text-zion-medium mb-2">
+                            핵심 목표: 글로벌 웰니스 & 바이오 혁신 브랜드 확립
+                        </p>
+                        <ul class="list-disc list-inside text-sm text-zion-medium space-y-1">
+                            <li>Zion Wellness Ecosystem 구축</li>
+                            <li>글로벌 파트너십 확대, Zion Lab 설립</li>
+                            <li>세계 시장 점유율 Top Tier 진입</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-          <div class="gallery">
-            <img src="https://picsum.photos/520/320?random=21" alt="lab"/>
-            <img src="https://picsum.photos/520/320?random=22" alt="ingredient" style="margin-top:12px"/>
-          </div>
-        </div>
-      </section>
-
-      <section id="roadmap" class="section">
-        <h3>📈 5개년 로드맵</h3>
-        <div class="roadmap">
-          <div class="step">
-            <strong>1년차</strong>
-            <small>기반 구축 & 초기 진입<br>특허·임상·파일럿 제품·파트너 확보</small>
-          </div>
-          <div class="step">
-            <strong>2년차</strong>
-            <small>시장 확장 & 브랜드 구축<br>스킨케어 확장·D2C 론칭·해외테스트</small>
-          </div>
-          <div class="step">
-            <strong>3년차</strong>
-            <small>글로벌 진출<br>인증(FDA/CE)·Joint R&D·학술발표</small>
-          </div>
-          <div class="step">
-            <strong>4년차</strong>
-            <small>헬스케어·바이오 확장<br>의약·의료용 적용·ESG 전략</small>
-          </div>
-          <div class="step">
-            <strong>5년차</strong>
-            <small>글로벌 리더십·플랫폼화<br>Zion Lab·Wellness Ecosystem</small>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h4>핵심성과 요약</h4>
-          <p class="muted">1~2년: 기술 검증 및 시장 진입 / 3년: 글로벌 확장 / 4~5년: 플랫폼화 및 리더십 확보</p>
-        </div>
-      </section>
-
-      <section id="preorder" class="section">
-        <div class="cta-strip">
-          <div>
-            <div style="font-size:13px;color:var(--muted)">신제품 런칭 예고</div>
-            <div style="font-weight:700;font-size:18px">시젠 기반 탈모방지 샴푸 — 사전예약 및 파트너십 문의</div>
-          </div>
-          <div style="display:flex;gap:10px">
-            <a class="nav-link" href="#contact">파트너 문의</a>
-            <a class="btn-primary" href="#contact">사전예약 신청</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="section">
-        <div class="two-col">
-          <div class="card">
-            <h3 style="margin-top:0">파트너 & 투자 문의</h3>
-            <p class="muted">사업 제안, OEM/ODM 협업, 투자 관련 문의를 환영합니다.</p>
-            <p class="muted"><strong>이메일:</strong> contact@zion.example<br><strong>전화:</strong> 02-000-0000</p>
-          </div>
-          <div class="card">
-            <h3 style="margin-top:0">슬로건</h3>
-            <p class="muted">Zion. Bring Out the Radiance.<br>Revitalize Without Compromise · Where Science Connects With Light</p>
-          </div>
-        </div>
-      </section>
+        <!-- 7. Call to Action / Slogan --><section id="contact" class="py-20 md:py-28 bg-zion-dark text-white text-center">
+            <div class="max-w-5xl mx-auto px-4">
+                <p class="text-xl font-light mb-4 text-zion-light">
+                    Where Science Connects With Light
+                </p>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-8">
+                    Zion과 함께 당신의 빛을 되찾으세요.
+                </h2>
+                <a href="#" class="btn-secondary !bg-white !text-zion-dark hover:!bg-gray-100">
+                    지금 바로 문의하기
+                </a>
+            </div>
+        </section>
 
     </main>
 
-    <footer>
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-        <div>
-          <strong>Zion</strong>
-          <div class="muted" style="margin-top:6px">© Zion 2025 · All rights reserved</div>
+    <!-- Footer --><footer class="bg-zion-background text-zion-medium py-10 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+            <h5 class="text-2xl font-extrabold mb-4 text-zion-dark">ZION</h5>
+            <div class="flex flex-wrap justify-center space-x-6 mb-4">
+                <a href="#about" class="hover:text-zion-dark transition duration-300">브랜드 스토리</a>
+                <a href="#si-zen" class="hover:text-zion-dark transition duration-300">핵심 소재</a>
+                <a href="#products" class="hover:text-zion-dark transition duration-300">제품</a>
+                <a href="#roadmap" class="hover:text-zion-dark transition duration-300">로드맵</a>
+                <a href="#contact" class="hover:text-zion-dark transition duration-300">문의</a>
+            </div>
+            <p class="mb-2 font-light">E-mail: info@zion.com | Tel: 02-XXX-XXXX</p>
+            <p class="text-xs font-extralight">&copy; 2024 Zion Corp. All rights reserved.</p>
         </div>
-        <div class="muted">Designed for GitHub Pages · Single-file HTML (index.html)</div>
-      </div>
     </footer>
-  </div>
 
-  <script>
-    // small animations
-    document.addEventListener('DOMContentLoaded',()=>{
-      document.querySelectorAll('.card, .step').forEach((el,i)=>{el.style.opacity=0;setTimeout(()=>{el.style.transition='all 420ms cubic-bezier(.2,.9,.3,1)';el.style.opacity=1;el.style.transform='translateY(0)';},100*i)});
-    });
-  </script>
 </body>
 </html>
+
+Here's how this new design aligns with your requests:
+
+* **Pretendard Font:** I've applied Pretendard as the primary font for all text elements, providing a modern and highly legible look.
+* **Reference-based Layout:**
+    * **Hero Section:** Features a prominent split layout with compelling text on the left and a large image placeholder on the right, mimicking the reference.
+    * **"WHY US?" Section:** This section now heavily draws inspiration from the circular layout in your reference. I've used a grid with items positioned around a central "WHY US?" text (visible on desktop) to highlight Zion's differentiators.
+    * **Product Categories:** Uses a mix of larger and smaller image cards with text overlays, similar to the visually rich product display in your reference.
+* **Colors & Design:**
+    * The primary color palette revolves around **light grays (`#F8F8F8`, `#F2F2F2`)** for backgrounds, **dark gray (`#2F2F2F`)** for main text, and a **soft, muted green (`#A8D2B4` / `#388E3C`)** as an accent color. This creates a clean, sophisticated, and modern aesthetic.
+    * Plenty of **white space** is used to give elements room to breathe, enhancing the luxurious feel.
+    * Buttons are styled for clear calls to action with a clean, modern look.
+    * Shadows are subtle, and borders are minimal, contributing to the light and airy feel.
+
+This design should give your Zion brand a very sleek, contemporary, and high-end feel, perfectly suited for a health and beauty solution company rooted in science. Remember to replace the `https://placehold.co/...` image URLs with your actual product photos and brand imagery for the best impact!
