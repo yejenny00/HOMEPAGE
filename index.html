@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zion - 본질의 빛을 회복시키다</title>
+    <title>Zion - Bring Out the Radiance</title>
     <!-- Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
     <!-- Pretendard Font --><link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
-        /* Pretendard for all text */
+        /* Custom Styles for Zion's Aesthetic - Adapted for the new reference */
         body {
-            font-family: 'Pretendard', sans-serif;
+            font-family: 'Pretendard', sans-serif; /* Pretendard for all text */
             background-color: #F8F8F8; /* Light gray background */
             color: #2F2F2F; /* Dark gray text */
-            line-height: 1.6;
         }
-        /* Custom Colors & Buttons */
-        .text-zion-dark { color: #2F2F2F; }
-        .text-zion-medium { color: #7A7A7A; }
-        .text-zion-light { color: #D1D1D1; }
-        .bg-zion-background { background-color: #F8F8F8; }
-        .bg-zion-section-bg { background-color: #F2F2F2; }
-        .bg-zion-accent-green-light { background-color: #E6F4EA; }
-        .text-zion-accent-green { color: #388E3C; } /* Darker green for text */
-        .border-zion-accent-green { border-color: #A8D2B4; } /* Soft green border */
-
+        h1, h2, h3, h4 {
+            font-family: 'Pretendard', sans-serif; /* Also Pretendard for headers */
+        }
+        .text-zion-dark {
+            color: #2F2F2F;
+        }
+        .bg-zion-light-gray {
+            background-color: #F2F2F2; /* Slightly darker light gray for sections */
+        }
+        .bg-zion-accent-light {
+            background-color: #E6F4EA; /* Soft green accent for subtle highlights */
+            color: #388E3C;
+        }
         .btn-primary {
             background-color: #2F2F2F;
             color: white;
@@ -31,11 +33,10 @@
             border-radius: 8px;
             font-weight: 500;
             transition: all 0.2s ease-in-out;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
         }
-        .btn-primary:hover { background-color: #4A4A4A; }
+        .btn-primary:hover {
+            background-color: #4A4A4A;
+        }
         .btn-secondary {
             background-color: white;
             color: #2F2F2F;
@@ -44,11 +45,10 @@
             border-radius: 8px;
             font-weight: 500;
             transition: all 0.2s ease-in-out;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
         }
-        .btn-secondary:hover { background-color: #F0F0F0; }
+        .btn-secondary:hover {
+            background-color: #F0F0F0;
+        }
 
         /* WHY US section specific styles */
         .why-us-item {
@@ -62,7 +62,6 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            border: 1px solid #E0E0E0; /* Light border */
         }
         .why-us-item::before {
             content: attr(data-number);
@@ -79,20 +78,6 @@
             font-weight: 600;
             margin-bottom: 8px;
         }
-
-        /* Card Overlay for categories/products */
-        .card-overlay {
-            position: absolute;
-            inset: 0;
-            background-color: rgba(0,0,0,0.3);
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: flex-end;
-            padding: 24px;
-        }
-        .group:hover .card-overlay {
-            background-color: rgba(0,0,0,0.4);
-        }
     </style>
     <script>
         tailwind.config = {
@@ -105,7 +90,7 @@
                         'zion-background': '#F8F8F8',
                         'zion-section-bg': '#F2F2F2',
                         'zion-accent-green': '#A8D2B4', /* Soft green for highlights */
-                        'zion-accent-text-green': '#388E3C', /* Darker green for text */
+                        'zion-accent-text-green': '#388E3C',
                     }
                 }
             }
@@ -116,7 +101,7 @@
 
     <!-- Header & Navigation --><header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1 class="text-3xl font-extrabold tracking-tight">ZION</h1>
+            <h1 class="text-3xl font-bold tracking-tight">ZION</h1>
             <nav class="hidden md:block">
                 <a href="#about" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">브랜드 스토리</a>
                 <a href="#why-us" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">우리의 차별점</a>
@@ -139,7 +124,7 @@
                     <p class="text-lg font-medium tracking-wide mb-3 text-zion-medium">Zion's Core Innovation</p>
                     <h2 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
                         과학을 통해<br>
-                        본질의 빛을 <span class="text-zion-accent-text-green">회복</span>시키다
+                        본질의 빛을 <span class="text-zion-accent-green">회복</span>시키다
                     </h2>
                     <p class="text-xl mb-8 text-zion-medium font-light">
                         부작용 없는 '진짜 효과'를 위한 혁신, 시젠(SiZen)
@@ -168,7 +153,7 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <!-- Left: Text --><div class="text-left">
                         <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Story</p>
-                        <h3 class="text-4xl font-extrabold mb-6">
+                        <h3 class="text-4xl font-bold mb-6">
                             효과와 안전성, 두 마리 토끼를 잡다
                         </h3>
                         <p class="text-lg mb-6 text-zion-medium">
@@ -279,41 +264,37 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <!-- Category 1: 뷰티 & 퍼스널 케어 (Larger Card) --><a href="#" class="group relative h-96 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
                         <img src="https://placehold.co/800x900/D9D9D9/7A7A7A?text=Beauty+%26+Personal+Care" alt="Beauty & Personal Care" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="card-overlay">
-                            <div>
-                                <p class="text-white text-base uppercase font-medium mb-1">Step 1 & 2 Focus</p>
-                                <h3 class="text-white text-4xl font-extrabold">뷰티 & 퍼스널 케어</h3>
-                                <span class="text-white text-sm font-light mt-2">탈모방지 샴푸, 스킨케어, 기능성 화장품</span>
-                            </div>
+                        <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex flex-col justify-end p-8">
+                            <p class="text-white text-base uppercase font-medium mb-1">Step 1 & 2 Focus</p>
+                            <h3 class="text-white text-4xl font-extrabold">뷰티 & 퍼스널 케어</h3>
+                            <span class="text-white text-sm font-light mt-2">탈모방지 샴푸, 스킨케어, 기능성 화장품</span>
                         </div>
                     </a>
                     <!-- Category 2: 헬스케어 & 웰니스 (Smaller Card) --><a href="#" class="group relative h-96 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
                         <img src="https://placehold.co/800x900/D9D9D9/7A7A7A?text=Healthcare+%26+Wellness" alt="Healthcare & Wellness" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="card-overlay">
-                            <div>
-                                <p class="text-white text-base uppercase font-medium mb-1">Step 3 & 4 Focus</p>
-                                <h3 class="text-white text-4xl font-extrabold">헬스케어 & 웰니스</h3>
-                                <span class="text-white text-sm font-light mt-2">예방의학, 건강보조제, 의료기기</span>
-                            </div>
+                        <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex flex-col justify-end p-8">
+                            <p class="text-white text-base uppercase font-medium mb-1">Step 3 & 4 Focus</p>
+                            <h3 class="text-white text-4xl font-extrabold">헬스케어 & 웰니스</h3>
+                            <span class="text-white text-sm font-light mt-2">예방의학, 건강보조제, 의료기기</span>
                         </div>
                     </a>
                 </div>
                 <!-- Additional Image Row (like reference) --><div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                     <a href="#" class="group relative h-64 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
                         <img src="https://placehold.co/600x400/D9D9D9/7A7A7A?text=New+Shampoo+Line" alt="New Shampoo Line" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="card-overlay">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex items-end p-6">
                             <p class="text-white text-xl font-bold border-b-2 border-white pb-1">탈모방지 신제품</p>
                         </div>
                     </a>
                     <a href="#" class="group relative h-64 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
                         <img src="https://placehold.co/600x400/D9D9D9/7A7A7A?text=Functional+Cosmetics" alt="Functional Cosmetics" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="card-overlay">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex items-end p-6">
                             <p class="text-white text-xl font-bold border-b-2 border-white pb-1">기능성 화장품</p>
                         </div>
                     </a>
                     <a href="#" class="group relative h-64 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
                         <img src="https://placehold.co/600x400/D9D9D9/7A7A7A?text=Bio+%26+Materials" alt="Bio & Materials" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="card-overlay">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex items-end p-6">
                             <p class="text-white text-xl font-bold border-b-2 border-white pb-1">바이오 소재</p>
                         </div>
                     </a>
@@ -333,8 +314,8 @@
                 </h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                    <!-- Year 1-2 --><div class="p-8 bg-white rounded-xl shadow-lg border border-gray-100">
-                        <span class="text-4xl font-extrabold text-zion-accent-text-green mb-4 block">1-2년차</span>
+                    <!-- Year 1-2 --><div class="p-8 bg-white rounded-xl shadow-lg">
+                        <span class="text-4xl font-bold text-zion-accent-green mb-4 block">1-2년차</span>
                         <h4 class="text-2xl font-bold mb-3">기반 구축 & 시장 진입</h4>
                         <p class="text-base text-zion-medium mb-2">
                             핵심 목표: 기술 신뢰성 확보, 초기 시장 진입 및 브랜드 구축
@@ -345,8 +326,8 @@
                             <li>D2C 플랫폼 론칭, 해외 초기 진출</li>
                         </ul>
                     </div>
-                    <!-- Year 3-4 --><div class="p-8 bg-white rounded-xl shadow-lg border border-gray-100">
-                        <span class="text-4xl font-extrabold text-zion-accent-text-green mb-4 block">3-4년차</span>
+                    <!-- Year 3-4 --><div class="p-8 bg-white rounded-xl shadow-lg">
+                        <span class="text-4xl font-bold text-zion-accent-green mb-4 block">3-4년차</span>
                         <h4 class="text-2xl font-bold mb-3">글로벌 확장 & 다각화</h4>
                         <p class="text-base text-zion-medium mb-2">
                             핵심 목표: 글로벌 프리미엄 브랜드 정착, 헬스·바이오 영역 확장
@@ -357,8 +338,8 @@
                             <li>건강보조제, 의료기기 적용 연구</li>
                         </ul>
                     </div>
-                    <!-- Year 5 --><div class="p-8 bg-white rounded-xl shadow-lg border border-gray-100">
-                        <span class="text-4xl font-extrabold text-zion-accent-text-green mb-4 block">5년차</span>
+                    <!-- Year 5 --><div class="p-8 bg-white rounded-xl shadow-lg">
+                        <span class="text-4xl font-bold text-zion-accent-green mb-4 block">5년차</span>
                         <h4 class="text-2xl font-bold mb-3">글로벌 리더십 & 플랫폼화</h4>
                         <p class="text-base text-zion-medium mb-2">
                             핵심 목표: 글로벌 웰니스 & 바이오 혁신 브랜드 확립
@@ -391,7 +372,7 @@
 
     <!-- Footer --><footer class="bg-zion-background text-zion-medium py-10 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 text-center text-sm">
-            <h5 class="text-2xl font-extrabold mb-4 text-zion-dark">ZION</h5>
+            <h5 class="text-2xl font-bold mb-4 text-zion-dark">ZION</h5>
             <div class="flex flex-wrap justify-center space-x-6 mb-4">
                 <a href="#about" class="hover:text-zion-dark transition duration-300">브랜드 스토리</a>
                 <a href="#si-zen" class="hover:text-zion-dark transition duration-300">핵심 소재</a>
@@ -406,18 +387,3 @@
 
 </body>
 </html>
-
-Here's how this new design aligns with your requests:
-
-* **Pretendard Font:** I've applied Pretendard as the primary font for all text elements, providing a modern and highly legible look.
-* **Reference-based Layout:**
-    * **Hero Section:** Features a prominent split layout with compelling text on the left and a large image placeholder on the right, mimicking the reference.
-    * **"WHY US?" Section:** This section now heavily draws inspiration from the circular layout in your reference. I've used a grid with items positioned around a central "WHY US?" text (visible on desktop) to highlight Zion's differentiators.
-    * **Product Categories:** Uses a mix of larger and smaller image cards with text overlays, similar to the visually rich product display in your reference.
-* **Colors & Design:**
-    * The primary color palette revolves around **light grays (`#F8F8F8`, `#F2F2F2`)** for backgrounds, **dark gray (`#2F2F2F`)** for main text, and a **soft, muted green (`#A8D2B4` / `#388E3C`)** as an accent color. This creates a clean, sophisticated, and modern aesthetic.
-    * Plenty of **white space** is used to give elements room to breathe, enhancing the luxurious feel.
-    * Buttons are styled for clear calls to action with a clean, modern look.
-    * Shadows are subtle, and borders are minimal, contributing to the light and airy feel.
-
-This design should give your Zion brand a very sleek, contemporary, and high-end feel, perfectly suited for a health and beauty solution company rooted in science. Remember to replace the `https://placehold.co/...` image URLs with your actual product photos and brand imagery for the best impact!
