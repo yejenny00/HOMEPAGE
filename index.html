@@ -3,190 +3,236 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>한국콜마 | New Product Launch</title>
-  <meta name="description" content="한국콜마의 신제품 런칭 페이지 — 팬시하고 감각적인 디자인의 홍보용 랜딩 페이지" />
-  <meta property="og:title" content="한국콜마 — 신제품 런칭" />
-  <meta property="og:description" content="클린하고 아트한 감성의 신제품 소개. 즉시 구매 및 문의 가능." />
-  <meta name="theme-color" content="#0f172a" />
+  <title>Zion | Bring Out the Radiance</title>
+  <meta name="description" content="Zion - 혁신적 합성소재 '시젠' 기반의 프리미엄 헬스·뷰티 솔루션" />
+  <meta property="og:title" content="Zion - Bring Out the Radiance" />
+  <meta property="og:description" content="시젠(SiO2 + ZnO)으로 안전성과 효능을 동시에. 탈모방지 샴푸·스킨케어 라인 런칭" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#071028; --glass: rgba(255,255,255,0.06); --accent:#ff6b6b; --muted:#9aa4b2;
-      --card:#0b1320;
-    }
+    :root{--bg:#0b1020;--card:#0f1724;--muted:#98a3b3;--accent:#ffd166;--accent2:#6be4ff}
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Montserrat,system-ui,Arial;background:linear-gradient(180deg,#071028 0%, #08122a 55%, #0b1224 100%);color:#e6eef6}
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:1100px;margin:0 auto;padding:48px 20px}
+    body{margin:0;font-family:Montserrat,system-ui,Arial;background:linear-gradient(180deg,#051127 0%, #081430 60%, #071021 100%);color:#f2f7fb}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:40px 20px}
 
-    /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#ffd2d2,#ff8fa3);display:grid;place-items:center;font-weight:800;color:#08122a;font-family:Playfair Display}
-    nav{display:flex;gap:18px;align-items:center}
-    .btn{padding:10px 16px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.08);cursor:pointer}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),#ff9a9a);color:#08122a;border:none}
+    header{display:flex;justify-content:space-between;align-items:center}
+    .logo{display:flex;gap:12px;align-items:center}
+    .logo-mark{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffb86b);display:grid;place-items:center;color:#081322;font-weight:800;font-family:Playfair Display}
+    nav{display:flex;gap:12px}
+    .nav-link{padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04)}
+    .btn-primary{padding:10px 16px;border-radius:12px;background:linear-gradient(90deg,var(--accent),#ffb86b);color:#081322;border:none;font-weight:700}
 
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;margin-top:28px}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:32px}
     .eyebrow{color:var(--muted);letter-spacing:2px;font-size:13px}
-    .title{font-size:44px;line-height:1.02;font-weight:800;font-family:Playfair Display;margin:8px 0}
-    .lead{color:var(--muted);margin-bottom:18px}
-    .hero-cta{display:flex;gap:12px}
-    .glass-card{background:var(--glass);backdrop-filter: blur(8px);padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,0.04)}
+    h1{font-family:Playfair Display;font-weight:700;font-size:44px;line-height:1.04;margin:6px 0}
+    p.lead{color:var(--muted);max-width:640px}
+    .cta-row{display:flex;gap:12px;margin-top:18px}
 
-    /* product preview */
-    .mock{border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(2,6,23,0.7);}
-    .mock img{width:100%;height:100%;display:block;object-fit:cover}
+    .mock{border-radius:18px;overflow:hidden;box-shadow:0 24px 80px rgba(2,6,23,0.6);}
+    .mock img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* Features */
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:40px 0}
-    .feature{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
-    .feature h4{margin:6px 0 0}
-    .feature p{color:var(--muted);font-size:14px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+    .card{background:rgba(255,255,255,0.03);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .card h4{margin:0 0 6px}
+    .muted{color:var(--muted);font-size:14px}
 
-    /* Gallery / Ingredients */
-    .gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:36px}
-    .card{background:var(--card);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+    .section{margin-top:44px}
+    .flex{display:flex;gap:16px;align-items:center}
 
-    /* CTA strip */
-    .cta-strip{display:flex;justify-content:space-between;align-items:center;padding:20px;border-radius:12px;background:linear-gradient(90deg, rgba(255,107,107,0.12), rgba(255,154,154,0.06));border:1px solid rgba(255,255,255,0.03)}
+    .roadmap{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}
+    .step{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.01));padding:14px;border-radius:10px;text-align:center;border:1px solid rgba(255,255,255,0.02)}
+    .step small{display:block;color:var(--muted);margin-top:6px}
 
-    footer{margin-top:48px;color:var(--muted);font-size:13px;padding-bottom:48px}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+    .gallery img{width:100%;height:220px;object-fit:cover;border-radius:10px}
 
-    /* Responsive */
+    .cta-strip{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradient(90deg,rgba(107,228,255,0.06),rgba(255,209,102,0.06));display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(255,255,255,0.02)}
+
+    footer{margin-top:40px;color:var(--muted);font-size:13px;padding-bottom:40px}
+
     @media (max-width:980px){
-      .hero{grid-template-columns:1fr;}
-      .features{grid-template-columns:repeat(2,1fr)}
-      .gallery{grid-template-columns:1fr}
+      .hero{grid-template-columns:1fr}
+      .roadmap{grid-template-columns:repeat(2,1fr)}
+      .two-col{grid-template-columns:1fr}
     }
-    @media (max-width:560px){.features{grid-template-columns:1fr}.wrap{padding:28px 16px}.title{font-size:32px}}
+    @media (max-width:560px){h1{font-size:30px}}
 
-    /* small animations */
-    .fade-up{transform:translateY(8px);opacity:0;animation:fadeUp .8s ease forwards}
-    @keyframes fadeUp{to{transform:none;opacity:1}}
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="container">
     <header>
-      <div class="brand">
-        <div class="logo">K</div>
+      <div class="logo">
+        <div class="logo-mark">Z</div>
         <div>
-          <div style="font-weight:700">한국콜마</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px">Science x Beauty</div>
+          <div style="font-weight:700">Zion</div>
+          <div class="muted" style="font-size:13px;margin-top:4px">Bring Out the Radiance</div>
         </div>
       </div>
       <nav>
-        <a class="btn" href="#about">제품소개</a>
-        <a class="btn" href="#features">특징</a>
-        <a class="btn" href="#gallery">갤러리</a>
-        <a class="btn primary" href="#buy">사전예약</a>
+        <a class="nav-link" href="#about">회사개요</a>
+        <a class="nav-link" href="#solution">솔루션</a>
+        <a class="nav-link" href="#roadmap">로드맵</a>
+        <a class="nav-link" href="#contact">문의</a>
+        <a class="btn-primary" href="#preorder">사전예약</a>
       </nav>
     </header>
 
-    <section class="hero">
-      <div>
-        <div class="eyebrow">NEW LAUNCH</div>
-        <h1 class="title">아트에서 영감을 받은<br>스킨케어 라인 — 'LUMENOIR'</h1>
-        <p class="lead">피부를 위한 과학적 접근과 감각적 디자인이 만납니다. 고농축 활성 성분과 미니멀한 텍스처로 즉각적인 촉촉함과 윤기를 선사합니다.</p>
-        <div class="hero-cta">
-          <a href="#buy" class="btn primary">사전예약하기</a>
-          <a href="#gallery" class="btn">제품 보기</a>
-        </div>
-
-        <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
-          <div class="glass-card" style="width:160px">
-            <div style="font-size:12px;color:var(--muted)">하이라이트</div>
-            <div style="font-weight:700;font-size:18px;margin-top:6px">비건 포뮬러</div>
-          </div>
-          <div class="glass-card" style="width:160px">
-            <div style="font-size:12px;color:var(--muted)">주성분</div>
-            <div style="font-weight:700;font-size:18px;margin-top:6px">히알루론 + 펩타이드</div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="mock fade-up" style="height:420px">
-        <img src="https://picsum.photos/900/1200?random=21" alt="제품 이미지" />
-      </div>
-    </section>
-
-    <section id="features" class="features">
-      <div class="feature fade-up">
-        <h4>고효능 포뮬러</h4>
-        <p>임상적으로 검증된 활성 성분을 최적의 농도로 담아 빠른 흡수와 가벼운 마무리를 제공합니다.</p>
-      </div>
-      <div class="feature fade-up" style="animation-delay:.1s">
-        <h4>아트 패키징</h4>
-        <p>팬시하고 예술적인 패키징으로 브랜드 경험을 확장합니다. 선물용으로도 뛰어납니다.</p>
-      </div>
-      <div class="feature fade-up" style="animation-delay:.2s">
-        <h4>지속 가능성</h4>
-        <p>재활용 가능한 소재와 클린 성분을 사용하여 환경 부담을 최소화했습니다.</p>
-      </div>
-    </section>
-
-    <section id="gallery" class="gallery">
-      <div class="card">
-        <h3 style="margin-top:0">제품 라인업</h3>
-        <p style="color:var(--muted);">세럼 / 토너 / 크림 — 모든 제품은 서로 레이어링하여 시너지 효과를 냅니다.</p>
-        <div style="display:flex;gap:10px;margin-top:12px">
-          <div style="flex:1;border-radius:10px;overflow:hidden"><img src="https://picsum.photos/520/380?random=33" alt="라인업1" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div style="flex:1;border-radius:10px;overflow:hidden"><img src="https://picsum.photos/520/380?random=34" alt="라인업2" style="width:100%;height:100%;object-fit:cover"/></div>
-        </div>
-      </div>
-      <div class="card">
-        <h3 style="margin-top:0">성분과 연구</h3>
-        <p style="color:var(--muted);">한국콜마의 R&D가 개발한 저자극 포뮬러, 피부 친화적인 pH 설계와 폐기물 감축 생산 공정을 소개합니다.</p>
-        <div style="display:flex;gap:10px;margin-top:12px">
-          <div style="border-radius:10px;overflow:hidden"><img src="https://picsum.photos/360/260?random=36" alt="lab" style="width:100%;display:block;object-fit:cover"/></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="buy" style="margin-top:6px">
-      <div class="cta-strip">
+    <main>
+      <section class="hero">
         <div>
-          <div style="font-size:13px;color:var(--muted)">한정 사전예약</div>
-          <div style="font-weight:700;font-size:20px">지금 사전예약하면 특별 패키지 + 10% 할인</div>
-        </div>
-        <div style="display:flex;gap:8px">
-          <a class="btn" href="#contact">문의하기</a>
-          <a class="btn primary" href="#" onclick="alert('사전예약 기능은 데모입니다. GitHub Pages에서 결제 연동을 추가하세요.')">지금 예약</a>
-        </div>
-      </div>
-    </section>
+          <div class="eyebrow">NEW · INNOVATION</div>
+          <h1>Zion — 시젠으로 되찾는 본연의 빛</h1>
+          <p class="lead">혁신적 합성소재 <strong>시젠(SiO₂ + ZnO)</strong>으로 안전성과 효능을 동시에 실현합니다. 탈모방지 샴푸에서 시작해 스킨케어와 헬스케어까지, Zion은 과학으로 본질의 빛을 회복시킵니다.</p>
 
-    <section style="display:flex;gap:18px;margin-top:26px;flex-wrap:wrap">
-      <div style="flex:1;min-width:260px" class="glass-card">
-        <h4 style="margin:0">제품 요약</h4>
-        <p style="color:var(--muted);margin-top:8px">간결한 사용법: 토너 → 세럼 → 크림. 모든 피부 타입 사용 가능(저자극 테스트 완료).</p>
-      </div>
-      <div style="flex:1;min-width:260px" class="glass-card">
-        <h4 style="margin:0">배송 & 고객지원</h4>
-        <p style="color:var(--muted);margin-top:8px">무료배송(50,000원 이상), 교환/환불 정책 및 고객센터 연락처를 제공합니다.</p>
-      </div>
-    </section>
+          <div class="cta-row">
+            <a class="btn-primary" href="#preorder">사전예약 / 문의</a>
+            <a class="nav-link" href="#roadmap">5개년 로드맵 보기</a>
+          </div>
 
-    <footer style="margin-top:40px">
+          <div class="grid-3">
+            <div class="card">
+              <h4>핵심기술</h4>
+              <div class="muted">시젠(SiO₂ + ZnO): 부작용 최소화 + 효능 강화</div>
+            </div>
+            <div class="card">
+              <h4>사업분야</h4>
+              <div class="muted">스킨케어 · 탈모방지 샴푸 · 기능성 화장품 · 헬스케어</div>
+            </div>
+            <div class="card">
+              <h4>비전</h4>
+              <div class="muted">과학으로 본질의 빛을 회복시키다</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mock">
+          <img src="https://picsum.photos/900/1200?random=12" alt="Zion Product"/>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="card">
+          <h3 style="margin-top:0">회사 개요</h3>
+          <p class="muted">브랜드명: Zion · 핵심기술: 시젠(SiO₂ + ZnO) · 사업분야: 헬스·뷰티케어 솔루션
+          <br><br><strong>비전:</strong> 과학을 통해 본질의 빛을 회복시키고, 모두가 자기답게 빛나는 세상을 만든다.</p>
+        </div>
+
+        <div style="display:flex;gap:16px;margin-top:12px;flex-wrap:wrap">
+          <div class="card" style="flex:1;min-width:240px">
+            <h4>사업 배경</h4>
+            <p class="muted">효능과 안전성의 트레이드오프 문제. 소비자는 '부작용 없는 진짜 효과'를 원합니다.</p>
+          </div>
+          <div class="card" style="flex:1;min-width:240px">
+            <h4>문제 정의</h4>
+            <p class="muted">소비자: 부작용 없는 기능성 제품 수요 ↑ / 기업: 차별화와 신뢰 확보 필요</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="solution" class="section">
+        <h3>솔루션 — 시젠(SiO₂ + ZnO)</h3>
+        <div class="two-col">
+          <div>
+            <div class="card">
+              <h4>무엇이 다른가?</h4>
+              <p class="muted">• 부작용 제거: 자극/트러블 요소 보완
+• 효능 강화: 탈모 방지, 피부 개선 등 목적 극대화
+• 범용성: 샴푸·스킨케어·의약·헬스케어 적용 가능
+
+시젠은 제품을 '완전한 제품'으로 진화시키는 촉매제입니다.</p>
+            </div>
+
+            <div style="margin-top:12px" class="card">
+              <h4>핵심 가치</h4>
+              <p class="muted">Brilliance · Revitalization · Connection · Integrity · Innovation</p>
+            </div>
+          </div>
+
+          <div class="gallery">
+            <img src="https://picsum.photos/520/320?random=21" alt="lab"/>
+            <img src="https://picsum.photos/520/320?random=22" alt="ingredient" style="margin-top:12px"/>
+          </div>
+        </div>
+      </section>
+
+      <section id="roadmap" class="section">
+        <h3>📈 5개년 로드맵</h3>
+        <div class="roadmap">
+          <div class="step">
+            <strong>1년차</strong>
+            <small>기반 구축 & 초기 진입<br>특허·임상·파일럿 제품·파트너 확보</small>
+          </div>
+          <div class="step">
+            <strong>2년차</strong>
+            <small>시장 확장 & 브랜드 구축<br>스킨케어 확장·D2C 론칭·해외테스트</small>
+          </div>
+          <div class="step">
+            <strong>3년차</strong>
+            <small>글로벌 진출<br>인증(FDA/CE)·Joint R&D·학술발표</small>
+          </div>
+          <div class="step">
+            <strong>4년차</strong>
+            <small>헬스케어·바이오 확장<br>의약·의료용 적용·ESG 전략</small>
+          </div>
+          <div class="step">
+            <strong>5년차</strong>
+            <small>글로벌 리더십·플랫폼화<br>Zion Lab·Wellness Ecosystem</small>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4>핵심성과 요약</h4>
+          <p class="muted">1~2년: 기술 검증 및 시장 진입 / 3년: 글로벌 확장 / 4~5년: 플랫폼화 및 리더십 확보</p>
+        </div>
+      </section>
+
+      <section id="preorder" class="section">
+        <div class="cta-strip">
+          <div>
+            <div style="font-size:13px;color:var(--muted)">신제품 런칭 예고</div>
+            <div style="font-weight:700;font-size:18px">시젠 기반 탈모방지 샴푸 — 사전예약 및 파트너십 문의</div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <a class="nav-link" href="#contact">파트너 문의</a>
+            <a class="btn-primary" href="#contact">사전예약 신청</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="two-col">
+          <div class="card">
+            <h3 style="margin-top:0">파트너 & 투자 문의</h3>
+            <p class="muted">사업 제안, OEM/ODM 협업, 투자 관련 문의를 환영합니다.</p>
+            <p class="muted"><strong>이메일:</strong> contact@zion.example<br><strong>전화:</strong> 02-000-0000</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">슬로건</h3>
+            <p class="muted">Zion. Bring Out the Radiance.<br>Revitalize Without Compromise · Where Science Connects With Light</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
         <div>
-          <strong>한국콜마</strong>
-          <div style="color:var(--muted);margin-top:6px">문의: partner@kolma.example · 전화: 02-000-0000</div>
+          <strong>Zion</strong>
+          <div class="muted" style="margin-top:6px">© Zion 2025 · All rights reserved</div>
         </div>
-        <div style="color:var(--muted)">© 한국콜마 2025</div>
+        <div class="muted">Designed for GitHub Pages · Single-file HTML (index.html)</div>
       </div>
     </footer>
   </div>
 
   <script>
-    // small UX touches
+    // small animations
     document.addEventListener('DOMContentLoaded',()=>{
-      document.querySelectorAll('.fade-up').forEach((el,i)=>{el.style.animationDelay=(i*80)+'ms'});
+      document.querySelectorAll('.card, .step').forEach((el,i)=>{el.style.opacity=0;setTimeout(()=>{el.style.transition='all 420ms cubic-bezier(.2,.9,.3,1)';el.style.opacity=1;el.style.transform='translateY(0)';},100*i)});
     });
   </script>
 </body>
