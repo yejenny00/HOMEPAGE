@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Time Booster - 내 몸의 골든타임을 위한 기능성 건강식품</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #E37253 0%, #FF8C6C 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .hero-tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 20px;
+            border-top: 2px solid rgba(255,255,255,0.3);
+            padding-top: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section {
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: #E37253;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(227,114,83,0.2);
+        }
+        
+        .product-number {
+            background: #E37253;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #222;
+        }
+        
+        .product-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        
+        .features {
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #E37253;
+        }
+        
+        .brand-values {
+            background: linear-gradient(135deg, #222 0%, #585755 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .brand-values h2 {
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .value-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #FF8C6C;
+        }
+        
+        .value-item p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .cta {
+            background: #E37253;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #E37253;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #222;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .tech-section {
+            background: #fff;
+            padding: 60px 20px;
+        }
+        
+        .tech-highlight {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid #E37253;
+            margin: 30px 0;
+        }
+        
+        .tech-highlight h3 {
+            color: #E37253;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .tech-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .tech-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .tech-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #E37253;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background: #222;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Golden Time Booster</h1>
+        <p>내 몸의 골든타임을 위한 기능성 건강식품</p>
+        <div class="hero-tagline">
+            프리바이오틱스 & 프로바이오틱스 조합으로<br>
+            장 건강 및 영양 흡수율 극대화
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title">1차 출시 제품 라인업</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-number">1</div>
+                    <h3>Golden Time Booster</h3>
+                    <p><strong>프리바이오틱스 & 프로바이오틱스 조합</strong></p>
+                    <p>장 건강 및 영양 흡수율 극대화</p>
+                    <p>장내 미생물 균형 조절 기능</p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-number">2</div>
+                    <h3>항산화 슈퍼푸드 블렌드</h3>
+                    <p><strong>산화아연, 아르기닌 등 면역력 강화</strong></p>
+                    <p>염증 감소 및 신체 항상성 유지</p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-number">3</div>
+                    <h3>종합 면역 케어</h3>
+                    <p><strong>천연 미네랄 복합물 기반</strong></p>
+                    <p>안전하고 지속적인 건강 관리</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="features">
+        <div class="container">
+            <h2 class="section-title">소비자 혜택</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🌿</div>
+                    <h4>소화건강 개선</h4>
+                    <p>활력 증진 및 장 건강 개선</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📦</div>
+                    <h4>휴대 간편</h4>
+                    <p>간편한 포장 & 다양한 활용성</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">✨</div>
+                    <h4>안전한 성분</h4>
+                    <p>오가닉, 글루텐프리 & 비건 옵션</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🔬</div>
+                    <h4>과학적 근거</h4>
+                    <p>검증된 기능성 원료 사용</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tech-section">
+        <div class="container">
+            <h2 class="section-title">혁신적 기술: SiZen (SiO₂-ZnO 복합물)</h2>
+            
+            <div class="tech-highlight">
+                <h3>핵심 기술 특징</h3>
+                <ul class="tech-list">
+                    <li>천연 미네랄 기반의 항균·항바이러스·항진균 효과</li>
+                    <li>국내 유일 독점 대량 생산 기술 보유</li>
+                    <li>항균력 지속시간 타 성분 대비 3~5배 이상</li>
+                    <li>인체 및 반려동물에 무해한 천연 성분</li>
+                    <li>노인·유아·민감성 피부에도 안전</li>
+                </ul>
+            </div>
+            
+            <div class="tech-highlight">
+                <h3>차별화 포인트</h3>
+                <ul class="tech-list">
+                    <li><strong>부작용 제거:</strong> 기존 원료의 자극/트러블 요소 보완</li>
+                    <li><strong>효능 강화:</strong> 자연 항균력 극대화</li>
+                    <li><strong>범용성:</strong> 식품, 생활용품, 헬스케어 등 다양한 분야 적용</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-values">
+        <h2>브랜드 핵심 가치</h2>
+        <div class="values-grid">
+            <div class="value-item">
+                <h3>Brilliance</h3>
+                <p>모든 사람과 제품 안에 숨겨진 고유한 빛을 드러낸다</p>
+            </div>
+            
+            <div class="value-item">
+                <h3>Revitalization</h3>
+                <p>지친 삶과 제품에 생명력과 활기를 불어넣는다</p>
+            </div>
+            
+            <div class="value-item">
+                <h3>Integrity</h3>
+                <p>안전하고 신뢰할 수 있는 과학적 근거 위에서 소통한다</p>
+            </div>
+            
+            <div class="value-item">
+                <h3>Elegance</h3>
+                <p>시간이 지나도 변하지 않는 아름다움</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title">타겟 고객</h2>
+            <div class="tech-highlight">
+                <h3>20~40대 직장인 · 대학생</h3>
+                <ul class="tech-list">
+                    <li>집중력 및 활력 회복이 필요한 분</li>
+                    <li>장 건강과 소화 기능 개선을 원하는 분</li>
+                    <li>안전하고 과학적으로 검증된 제품을 선호하는 분</li>
+                    <li>바쁜 일상 속 간편하게 건강을 관리하고 싶은 분</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <div class="cta">
+        <h2>부작용 없는 진짜 효과</h2>
+        <p>과학을 통해 본질의 빛을 회복시키고,<br>모두가 자기답게 빛나는 세상을 만듭니다.</p>
+        <a href="#" class="btn">제품 문의하기</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 시젠 (SiZen) - 모든 권리 보유</p>
+        <p>담당자: 정예지, 현예나 | 연락처: 010-3173-8514</p>
+    </footer>
+</body>
+</html>
