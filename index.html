@@ -1,719 +1,428 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zion - Bring Out the Radiance</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Pretendard Font -->
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <style>
-        /* Custom Styles for Zion's Aesthetic - Adapted for the new reference */
-        body {
-            font-family: 'Pretendard', sans-serif; /* Pretendard for all text */
-            background-color: #F8F8F8; /* Light gray background */
-            color: #2F2F2F; /* Dark gray text */
-            line-height: 1.6;
-        }
-        h1, h2, h3, h4 {
-            font-family: 'Pretendard', sans-serif; /* Also Pretendard for headers */
-        }
-        .text-zion-dark { color: #2F2F2F; }
-        .text-zion-medium { color: #7A7A7A; }
-        .text-zion-light { color: #D1D1D1; }
-        .bg-zion-background { background-color: #F8F8F8; }
-        .bg-zion-section-bg { background-color: #F2F2F2; }
-        .bg-zion-accent-green-light { background-color: #E6F4EA; }
-        .text-zion-accent-green { color: #388E3C; } /* Darker green for text */
-        .border-zion-accent-green { border-color: #A8D2B4; } /* Soft green border */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zion - Bring Out the Radiance</title>
 
-        /* AI Accent Color (Soft Blue for Technology) */
-        .bg-ai-blue { background-color: #E0F7FA; }
-        .text-ai-blue { color: #00838F; }
-        
-        .btn-primary {
-            background-color: #2F2F2F;
-            color: white;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.2s ease-in-out;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .btn-primary:hover { background-color: #4A4A4A; }
-        .btn-secondary {
-            background-color: white;
-            color: #2F2F2F;
-            border: 1px solid #D1D1D1;
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.2s ease-in-out;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .btn-secondary:hover { background-color: #F0F0F0; }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-        .btn-ai {
-            background-color: #00838F;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.2s ease-in-out;
-        }
-        .btn-ai:hover { background-color: #006064; }
+  <style>
+    body { font-family: 'Pretendard', sans-serif; background:#F8F8F8; color:#2F2F2F; line-height:1.6; }
+    .text-zion-dark{color:#2F2F2F;} .text-zion-medium{color:#7A7A7A;} .text-zion-light{color:#D1D1D1;}
+    .bg-zion-background{background:#F8F8F8;} .bg-zion-section-bg{background:#F2F2F2;}
+    .bg-ai-blue{background:#E0F7FA;} .text-ai-blue{color:#00838F;}
+    .btn-primary{background:#2F2F2F;color:#fff;padding:12px 28px;border-radius:8px;font-weight:500;transition:.2s;display:inline-flex;align-items:center;justify-content:center;}
+    .btn-primary:hover{background:#4A4A4A;}
+    .btn-secondary{background:#fff;color:#2F2F2F;border:1px solid #D1D1D1;padding:10px 24px;border-radius:8px;font-weight:500;transition:.2s;display:inline-flex;align-items:center;justify-content:center;}
+    .btn-secondary:hover{background:#F0F0F0;}
+    .btn-ai{background:#00838F;color:#fff;padding:8px 16px;border-radius:8px;font-weight:500;transition:.2s;}
+    .btn-ai:hover{background:#006064;}
+    .why-us-item{position:relative;background:#fff;border-radius:12px;padding:24px;text-align:left;box-shadow:0 4px 10px rgba(0,0,0,.03);min-height:160px;display:flex;flex-direction:column;justify-content:center;border:1px solid #E0E0E0;}
+    .why-us-item::before{content:attr(data-number);position:absolute;top:20px;right:20px;font-size:2.5rem;font-weight:700;color:#E0E0E0;line-height:1;}
+    .why-us-title{font-size:1.25rem;font-weight:600;margin-bottom:8px;}
+  </style>
 
-        /* WHY US section specific styles */
-        .why-us-item {
-            position: relative;
-            background-color: white;
-            border-radius: 12px;
-            padding: 24px;
-            text-align: left;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            min-height: 160px; /* Ensure consistent height */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border: 1px solid #E0E0E0; /* Light border */
-        }
-        .why-us-item::before {
-            content: attr(data-number);
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #E0E0E0; /* Light gray number */
-            line-height: 1;
-        }
-        .why-us-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'zion-dark': '#2F2F2F',
-                        'zion-medium': '#7A7A7A',
-                        'zion-light': '#D1D1D1',
-                        'zion-background': '#F8F8F8',
-                        'zion-section-bg': '#F2F2F2',
-                        'zion-accent-green': '#A8D2B4',
-                        'zion-accent-text-green': '#388E3C',
-                    }
-                }
-            }
-        }
-    </script>
-    <script>
-        // --- Gemini API Utilities ---
-        const apiKey = ""; // API key is provided by the environment
-        const LLM_MODEL = 'gemini-2.5-flash-preview-09-2025';
-        const TTS_MODEL = 'gemini-2.5-flash-preview-tts';
-        const BASE_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/';
+  <script>
+    // ---------- Utils ----------
+    function escapeHtml(str='') {
+      return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
 
-        // 1. Base64 String to ArrayBuffer (for PCM to WAV conversion)
-        function base64ToArrayBuffer(base64) {
-            const binaryString = atob(base64);
-            const len = binaryString.length;
-            const bytes = new Uint8Array(len);
-            for (let i = 0; i < len; i++) {
-                bytes[i] = binaryString.charCodeAt(i);
-            }
-            return bytes.buffer;
+    function base64ToArrayBuffer(base64) {
+      const binaryString = atob(base64);
+      const len = binaryString.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) bytes[i] = binaryString.charCodeAt(i);
+      return bytes.buffer;
+    }
+
+    function pcmToWav(pcm16, sampleRate = 24000) {
+      const numChannels = 1;
+      const bytesPerSample = 2;
+      const blockAlign = numChannels * bytesPerSample;
+      const byteRate = sampleRate * blockAlign;
+
+      const buffer = new ArrayBuffer(44 + pcm16.length * bytesPerSample);
+      const view = new DataView(buffer);
+      let offset = 0;
+
+      function writeString(s) { for (let i = 0; i < s.length; i++) view.setUint8(offset + i, s.charCodeAt(i)); offset += s.length; }
+      function writeUint32(i) { view.setUint32(offset, i, true); offset += 4; }
+      function writeUint16(i) { view.setUint16(offset, i, true); offset += 2; }
+
+      writeString('RIFF');
+      writeUint32(36 + pcm16.length * bytesPerSample);
+      writeString('WAVE');
+      writeString('fmt ');
+      writeUint32(16);
+      writeUint16(1);
+      writeUint16(numChannels);
+      writeUint32(sampleRate);
+      writeUint32(byteRate);
+      writeUint16(blockAlign);
+      writeUint16(bytesPerSample * 8);
+      writeString('data');
+      writeUint32(pcm16.length * bytesPerSample);
+
+      for (let i = 0; i < pcm16.length; i++) {
+        view.setInt16(offset, pcm16[i], true);
+        offset += bytesPerSample;
+      }
+      return new Blob([buffer], { type: 'audio/wav' });
+    }
+
+    // ---------- Feature 1: Slogan ----------
+    async function generateSlogan() {
+      const keywords = document.getElementById('slogan-keywords').value.trim();
+      const resultDiv = document.getElementById('slogan-result');
+      const btn = document.getElementById('slogan-button');
+      const loading = document.getElementById('slogan-loading');
+
+      if (!keywords) {
+        resultDiv.innerHTML = `<p class="text-red-500">키워드를 1~3개 입력해 주세요. (예: 안전, 회복, 빛남)</p>`;
+        return;
+      }
+
+      loading.classList.remove('hidden');
+      btn.disabled = true;
+      resultDiv.innerHTML = '';
+
+      try {
+        const res = await fetch('/api/slogan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ keywords })
+        });
+        if (!res.ok) throw new Error(`Server ${res.status}`);
+        const data = await res.json();
+
+        if (!data?.slogans?.length) {
+          resultDiv.innerHTML = `<p class="text-red-500">슬로건 생성 실패. 다시 시도해 주세요.</p>`;
+          return;
         }
 
-        // 2. PCM (Raw Audio) to WAV format converter (required for TTS playback)
-        function pcmToWav(pcm16, sampleRate = 24000) {
-            const numChannels = 1;
-            const bytesPerSample = 2; // 16-bit PCM
-            const blockAlign = numChannels * bytesPerSample;
-            const byteRate = sampleRate * blockAlign;
+        let html = '<div class="space-y-3 mt-4">';
+        data.slogans.forEach(s => {
+          const lang = (s.language || '').toLowerCase();
+          const label = lang.includes('kor') ? '🇰🇷 한국어:' : '🇺🇸 영어:';
+          html += `<p class="text-lg font-medium border-l-4 border-green-600 pl-3">${label} <span class="font-bold">${escapeHtml(s.text)}</span></p>`;
+        });
+        html += '</div>';
+        resultDiv.innerHTML = html;
+      } catch (e) {
+        resultDiv.innerHTML = `<p class="text-red-500">오류: ${escapeHtml(e.message)}</p>`;
+      } finally {
+        loading.classList.add('hidden');
+        btn.disabled = false;
+      }
+    }
 
-            const buffer = new ArrayBuffer(44 + pcm16.length * bytesPerSample);
-            const view = new DataView(buffer);
-            let offset = 0;
+    // ---------- Feature 2: TTS ----------
+    async function playTts(textKey, buttonEl) {
+      const loading = document.getElementById('tts-loading');
+      const error = document.getElementById('tts-error');
+      error.textContent = '';
+      loading.classList.remove('hidden');
+      buttonEl.disabled = true;
 
-            function writeString(s) {
-                for (let i = 0; i < s.length; i++) {
-                    view.setUint8(offset + i, s.charCodeAt(i));
-                }
-                offset += s.length;
-            }
+      const texts = {
+        'sizen-benefits': '시젠은 기존 원료의 자극 요소를 보완하여 부담을 낮추고, 두피·피부 케어 제품이 지향하는 사용 경험을 더 편안하게 설계하는 데 도움을 줍니다. Zion의 핵심 기술 컨셉입니다.'
+      };
+      const text = texts[textKey];
 
-            function writeUint32(i) {
-                view.setUint32(offset, i, true);
-                offset += 4;
-            }
+      try {
+        const res = await fetch('/api/tts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text })
+        });
+        if (!res.ok) throw new Error(`Server ${res.status}`);
+        const data = await res.json();
 
-            function writeUint16(i) {
-                view.setUint16(offset, i, true);
-                offset += 2;
-            }
+        const mimeType = data?.mimeType || '';
+        const audioData = data?.audioData;
+        if (!audioData || !mimeType.startsWith('audio/')) throw new Error('오디오 생성 실패');
 
-            // RIFF chunk
-            writeString('RIFF');
-            writeUint32(36 + pcm16.length * bytesPerSample);
-            writeString('WAVE');
+        const rateMatch = mimeType.match(/rate=(\d+)/);
+        const sampleRate = rateMatch ? parseInt(rateMatch[1], 10) : 24000;
 
-            // fmt chunk
-            writeString('fmt ');
-            writeUint32(16); // Chunk size
-            writeUint16(1);  // Audio format (1 for PCM)
-            writeUint16(numChannels);
-            writeUint32(sampleRate);
-            writeUint32(byteRate);
-            writeUint16(blockAlign);
-            writeUint16(bytesPerSample * 8); // Bits per sample (16)
+        const pcmData = base64ToArrayBuffer(audioData);
+        const pcm16 = new Int16Array(pcmData);
+        const wavBlob = pcmToWav(pcm16, sampleRate);
+        const audioUrl = URL.createObjectURL(wavBlob);
 
-            // data chunk
-            writeString('data');
-            writeUint32(pcm16.length * bytesPerSample);
-
-            // Write PCM data
-            for (let i = 0; i < pcm16.length; i++) {
-                view.setInt16(offset, pcm16[i], true);
-                offset += bytesPerSample;
-            }
-
-            return new Blob([buffer], { type: 'audio/wav' });
-        }
-
-        // 3. Exponential Backoff Fetch
-        async function fetchWithBackoff(url, options, maxRetries = 3) {
-            for (let i = 0; i < maxRetries; i++) {
-                try {
-                    const response = await fetch(url, options);
-                    if (response.ok) return response;
-
-                    // Handle rate limiting (429) or server errors (5xx)
-                    if (response.status === 429 || response.status >= 500) {
-                        const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
-                        await new Promise(resolve => setTimeout(resolve, delay));
-                        continue;
-                    }
-                    throw new Error(`API returned status ${response.status}`);
-                } catch (error) {
-                    if (i === maxRetries - 1) throw error; // Re-throw on last retry
-                    const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                }
-            }
-        }
-
-        // --- LLM Feature 1: Slogan Generator ---
-
-        async function generateSlogan() {
-            const inputElement = document.getElementById('slogan-keywords');
-            const keywords = inputElement.value.trim();
-            const resultDiv = document.getElementById('slogan-result');
-            const generateButton = document.getElementById('slogan-button');
-            const loadingSpan = document.getElementById('slogan-loading');
-
-            if (!keywords) {
-                resultDiv.innerHTML = `<p class="text-red-500">키워드를 1~3개 입력해 주세요. (예: 안전, 회복, 빛남)</p>`;
-                return;
-            }
-
-            loadingSpan.classList.remove('hidden');
-            generateButton.disabled = true;
-            resultDiv.innerHTML = '';
-            
-            const systemPrompt = `당신은 Zion 브랜드의 마케팅 전문가입니다. Zion은 '혁신적 합성소재 시젠(SiO₂ + ZnO)'을 기반으로 부작용 없이 본질적인 아름다움을 회복시키는 프리미엄 헬스·뷰티 브랜드입니다. 고객이 제공한 키워드와 Zion의 핵심 가치(과학, 빛, 회복, 진정성)를 결합하여 한국어와 영어 슬로건을 각 1개씩, 총 2개의 창의적이고 감각적인 슬로건을 생성해야 합니다. 응답은 오직 JSON 형식으로만 제공되어야 합니다.`;
-            
-            const userQuery = `키워드: ${keywords}. 이 키워드를 포함하여 Zion 브랜드에 적합한 슬로건 2개를 생성해 주세요.`;
-
-            const payload = {
-                contents: [{ parts: [{ text: userQuery }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] },
-                generationConfig: {
-                    responseMimeType: "application/json",
-                    responseSchema: {
-                        type: "OBJECT",
-                        properties: {
-                            "slogans": {
-                                type: "ARRAY",
-                                items: {
-                                    type: "OBJECT",
-                                    properties: {
-                                        "language": { "type": "STRING", "description": "Korean or English" },
-                                        "text": { "type": "STRING", "description": "The generated slogan text" }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-
-            const apiUrl = `${BASE_API_URL}${LLM_MODEL}:generateContent?key=${apiKey}`;
-
-            try {
-                const response = await fetchWithBackoff(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-                const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
-
-                if (!jsonText) {
-                    resultDiv.innerHTML = `<p class="text-red-500">슬로건 생성에 실패했습니다. 잠시 후 다시 시도해 주세요.</p>`;
-                    return;
-                }
-
-                const parsedJson = JSON.parse(jsonText);
-                let html = '<div class="space-y-3 mt-4">';
-                parsedJson.slogans.forEach(s => {
-                    html += `<p class="text-lg font-medium border-l-4 border-zion-accent-text-green pl-3">${s.language === 'Korean' ? '🇰🇷 한국어:' : '🇺🇸 영어:'} <span class="font-bold">${s.text}</span></p>`;
-                });
-                html += '</div>';
-                resultDiv.innerHTML = html;
-
-            } catch (error) {
-                console.error("Gemini Slogan API Error:", error);
-                resultDiv.innerHTML = `<p class="text-red-500">API 호출 중 오류가 발생했습니다: ${error.message}</p>`;
-            } finally {
-                loadingSpan.classList.add('hidden');
-                generateButton.disabled = false;
-            }
-        }
-
-        // --- LLM Feature 2: TTS Audio Description ---
-        
-        async function generateTtsAudio(element, textKey) {
-            const button = element;
-            const loadingDiv = document.getElementById('tts-loading');
-            const errorDiv = document.getElementById('tts-error');
-            
-            errorDiv.textContent = '';
-            button.disabled = true;
-            loadingDiv.classList.remove('hidden');
-
-            const texts = {
-                'sizen-benefits': '시젠은 기존 원료의 자극 요소를 완벽히 보완하여 부작용을 제거하고, 탈모 방지, 피부 개선 등 제품의 본래 목적을 극대화하여 진짜 효과를 실현합니다. 과학적 진정성을 바탕으로 한 Zion의 핵심 기술입니다.',
-            };
-            const textToSpeak = texts[textKey];
-
-            const payload = {
-                contents: [{
-                    parts: [{ text: `차분하고 신뢰감 있는 목소리로 읽어주세요: ${textToSpeak}` }]
-                }],
-                generationConfig: {
-                    responseModalities: ["AUDIO"],
-                    speechConfig: {
-                        voiceConfig: {
-                            prebuiltVoiceConfig: { voiceName: "Kore" } // Kore voice for firm/informative tone
-                        }
-                    }
-                },
-                model: TTS_MODEL
-            };
-
-            const apiUrl = `${BASE_API_URL}${TTS_MODEL}:generateContent?key=${apiKey}`;
-
-            try {
-                const response = await fetchWithBackoff(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                const result = await response.json();
-                const part = result?.candidates?.[0]?.content?.parts?.[0];
-                const audioData = part?.inlineData?.data;
-                const mimeType = part?.inlineData?.mimeType;
-
-                if (!audioData || !mimeType || !mimeType.startsWith("audio/")) {
-                    errorDiv.textContent = '오디오 데이터 생성 실패. 응답을 확인하세요.';
-                    return;
-                }
-
-                // API returns audio/L16;rate=24000
-                const rateMatch = mimeType.match(/rate=(\d+)/);
-                const sampleRate = rateMatch ? parseInt(rateMatch[1], 10) : 24000;
-                
-                const pcmData = base64ToArrayBuffer(audioData);
-                const pcm16 = new Int16Array(pcmData);
-                const wavBlob = pcmToWav(pcm16, sampleRate);
-                const audioUrl = URL.createObjectURL(wavBlob);
-
-                const audio = new Audio(audioUrl);
-                audio.play();
-
-                // Clean up URL after playback
-                audio.onended = () => URL.revokeObjectURL(audioUrl);
-
-            } catch (error) {
-                console.error("Gemini TTS API Error:", error);
-                errorDiv.textContent = `음성 생성 중 오류가 발생했습니다: ${error.message}`;
-            } finally {
-                loadingDiv.classList.add('hidden');
-                button.disabled = false;
-            }
-        }
-    </script>
+        const audio = new Audio(audioUrl);
+        audio.play();
+        audio.onended = () => URL.revokeObjectURL(audioUrl);
+      } catch (e) {
+        error.textContent = `음성 오류: ${e.message}`;
+      } finally {
+        loading.classList.add('hidden');
+        buttonEl.disabled = false;
+      }
+    }
+  </script>
 </head>
+
 <body class="text-zion-dark">
+  <!-- Header -->
+  <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold tracking-tight">ZION</h1>
+      <nav class="hidden md:block">
+        <a href="#about" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">브랜드 스토리</a>
+        <a href="#why-us" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">우리의 차별점</a>
+        <a href="#products" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">제품 & 카테고리</a>
+        <a href="#roadmap" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">로드맵</a>
+        <a href="#contact" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">문의</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <a href="shop.html" class="btn-primary">SHOP</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Header & Navigation -->
-    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1 class="text-3xl font-bold tracking-tight">ZION</h1>
-            <nav class="hidden md:block">
-                <a href="#about" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">브랜드 스토리</a>
-                <a href="#why-us" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">우리의 차별점</a>
-                <a href="#products" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">제품 & 카테고리</a>
-                <a href="#roadmap" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">로드맵</a>
-                <a href="#contact" class="text-sm font-medium text-zion-medium hover:text-zion-dark transition duration-300 mx-4">문의</a>
-            </nav>
-            <div class="flex items-center space-x-4">
-                <a href="https://www.example-beauty-store.com/products/skincare" class="text-zion-dark hover:text-zion-medium transition duration-300 text-xl">&#x1F50D;</a> <!-- Search Icon -->
-                <a href="shop.html" class="btn-primary">
-                    SHOP
-                </a>
-            </div>
+  <main>
+    <!-- Hero -->
+    <section class="bg-zion-background py-10 md:py-0">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row h-[80vh] min-h-[600px] overflow-hidden">
+        <div class="md:w-1/2 flex flex-col justify-center p-8 md:p-16">
+          <p class="text-lg font-medium tracking-wide mb-3 text-zion-medium">Zion's Core Innovation</p>
+          <h2 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+            과학을 통해<br />본질의 빛을 <span class="text-green-700">회복</span>시키다
+          </h2>
+          <p class="text-xl mb-8 text-zion-medium font-light">부작용 없는 '진짜 효과'를 위한 혁신, 시젠(SiZen)</p>
+          <div class="flex space-x-4">
+            <a href="#products" class="btn-primary">신제품 보러가기</a>
+            <a href="#si-zen" class="btn-secondary">SiZen 기술 알아보기</a>
+          </div>
         </div>
-    </header>
-
-    <main>
-        <!-- 1. Hero Section (Left text, Right Image/Video) -->
-        <section class="bg-zion-background py-10 md:py-0">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row h-[80vh] min-h-[600px] overflow-hidden">
-                <!-- Left Panel: Text & CTA -->
-                <div class="md:w-1/2 flex flex-col justify-center p-8 md:p-16">
-                    <p class="text-lg font-medium tracking-wide mb-3 text-zion-medium">Zion's Core Innovation</p>
-                    <h2 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-                        과학을 통해<br>
-                        본질의 빛을 <span class="text-zion-accent-text-green">회복</span>시키다
-                    </h2>
-                    <p class="text-xl mb-8 text-zion-medium font-light">
-                        부작용 없는 '진짜 효과'를 위한 혁신, 시젠(SiZen)
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#products" class="btn-primary">
-                            신제품 보러가기
-                        </a>
-                        <a href="#si-zen" class="btn-secondary">
-                            SiZen 기술 알아보기
-                        </a>
-                    </div>
-                </div>
-                <!-- Right Panel: Image/Video -->
-                <div class="md:w-1/2 flex items-center justify-center bg-gray-100 overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop" alt="Product Showcase" class="w-full h-full object-cover">
-                    <div class="absolute bottom-6 right-6 p-3 bg-white rounded-lg shadow-lg flex items-center space-x-2">
-                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                        <span class="text-sm font-medium text-zion-dark">지금 바로 경험하세요!</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- ✨ AI Feature 1: Slogan Generator -->
-        <section id="slogan-generator" class="py-16 md:py-24 bg-ai-blue">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <h3 class="text-4xl font-extrabold mb-4 text-ai-blue">
-                    ✨ AI 슬로건 제안 받기
-                </h3>
-                <p class="text-lg text-ai-blue mb-8 opacity-90">
-                    Zion의 비전에 맞는 창의적인 슬로건을 AI가 즉시 생성해 드립니다. 1~3개의 키워드를 입력해보세요!
-                </p>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-6">
-                        <input id="slogan-keywords" type="text" placeholder="키워드 입력 (예: 안전, 회복, 빛남)" class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-ai-blue focus:border-ai-blue" />
-                        <button id="slogan-button" onclick="generateSlogan()" class="btn-ai flex items-center justify-center">
-                            슬로건 생성 <span class="ml-2">&#x2728;</span>
-                        </button>
-                    </div>
-                    <div id="slogan-loading" class="hidden text-center text-ai-blue font-medium mb-4">
-                        <span class="animate-pulse">슬로건을 생성 중입니다...</span>
-                    </div>
-                    <div id="slogan-result" class="text-left min-h-[50px]">
-                        <!-- Results displayed here -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. About Us / Brand Story (Adapted from reference with focus on problem) -->
-        <section id="about" class="py-16 md:py-24 bg-zion-section-bg">
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <!-- Left: Text -->
-                    <div class="text-left">
-                        <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Story</p>
-                        <h3 class="text-4xl font-bold mb-6">
-                            효과와 안전성, 두 마리 토끼를 잡다
-                        </h3>
-                        <p class="text-lg mb-6 text-zion-medium">
-                            현재 헬스·뷰티 시장은 "효과"와 "안전성"이라는 두 가지 과제를 동시에 안고 있습니다. 기존 제품은 효능은 있으나 부작용이 따르거나, 안전성을 강화하면 효능이 약화되는 문제가 존재합니다.
-                        </p>
-                        <p class="text-lg font-medium mb-6">
-                            소비자들은 **"부작용 없는 진짜 효과"**를 원하지만, 이를 충족하는 제품은 부족한 상황입니다. Zion은 이 문제에 대한 해답을 제시합니다.
-                        </p>
-                        <a href="#why-us" class="inline-flex items-center text-zion-dark font-medium hover:text-zion-medium transition duration-300">
-                            Zion의 해결책 알아보기 <span class="ml-2 text-xl">&rarr;</span>
-                        </a>
-                    </div>
-                    <!-- Right: Supporting Images -->
-                    <div class="space-y-6">
-                        <div class="h-60 rounded-xl overflow-hidden shadow-lg">
-                            <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop" alt="Consumer Dilemma" class="w-full h-full object-cover">
-                        </div>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="h-40 rounded-xl overflow-hidden shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop" alt="Skin improvement" class="w-full h-full object-cover">
-                            </div>
-                            <div class="h-40 rounded-xl overflow-hidden shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop" alt="Safe Ingredients" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. Why Us? / Our Differentiation (Reference-inspired circle layout) -->
-        <section id="why-us" class="py-16 md:py-24 bg-white text-center">
-            <div class="max-w-7xl mx-auto px-4">
-                <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Core Values</p>
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-12">
-                    왜 Zion인가요?
-                </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative max-w-5xl mx-auto">
-                    <!-- Central Text "WHY US" -->
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10 hidden md:flex">
-                        <div class="w-64 h-64 flex items-center justify-center bg-zion-accent-green rounded-full opacity-10">
-                            <span class="text-4xl font-bold text-zion-dark opacity-80">WHY US?</span>
-                        </div>
-                    </div>
-
-                    <!-- WHY US Item 1 -->
-                    <div class="why-us-item" data-number="01">
-                        <p class="why-us-title">혁신적 합성소재 (SiZen)</p>
-                        <p class="text-sm text-zion-medium">SiO₂ + ZnO 복합 기술로 부작용 없는 '진짜 효과'를 제공합니다.</p>
-                    </div>
-
-                    <!-- WHY US Item 2 -->
-                    <div class="why-us-item md:mt-16" data-number="02">
-                        <p class="why-us-title">과학적 진정성</p>
-                        <p class="text-sm text-zion-medium">철저한 임상 및 시험 데이터를 기반으로, 신뢰할 수 있는 효과를 약속합니다.</p>
-                    </div>
-
-                    <!-- WHY US Item 3 -->
-                    <div class="why-us-item" data-number="03">
-                        <p class="why-us-title">범용성 및 확장성</p>
-                        <p class="text-sm text-zion-medium">뷰티·헬스케어를 넘어 의약·바이오 분야로 무한한 적용 가능성을 가집니다.</p>
-                    </div>
-
-                    <!-- WHY US Item 4 -->
-                    <div class="why-us-item md:mt-16" data-number="04">
-                        <p class="why-us-title">본질의 빛 회복</p>
-                        <p class="text-sm text-zion-medium">지친 삶과 제품에 생기를 불어넣어, 모두가 자기답게 빛나는 세상을 만듭니다.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. Core Solution - SiZen (Detailed) -->
-        <section id="si-zen" class="py-16 md:py-24 bg-zion-section-bg">
-            <div class="max-w-7xl mx-auto px-4 text-center">
-                <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Core Technology</p>
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
-                    SiZen: 차이를 만드는 핵심 소재
-                </h2>
-
-                <!-- ✨ AI Feature 2: TTS Button -->
-                <div class="flex justify-center items-center space-x-4 mb-12">
-                    <button onclick="generateTtsAudio(this, 'sizen-benefits')" class="btn-ai flex items-center">
-                        🔊 핵심 설명 음성 듣기
-                    </button>
-                    <span id="tts-loading" class="hidden text-sm font-medium text-ai-blue">로딩 중...</span>
-                    <span id="tts-error" class="text-sm text-red-500"></span>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="text-left space-y-6">
-                        <p class="text-xl font-medium text-zion-dark leading-relaxed">
-                            시젠(SiO₂ + ZnO)은 기존 제품의 한계를 극복하고 본연의 목적을 완전하게 실현하는 혁신적 합성소재입니다.
-                        </p>
-                        <ul class="space-y-4 text-lg text-zion-medium">
-                            <li class="flex items-start">
-                                <span class="text-zion-dark text-2xl mr-3">✓</span>
-                                <div><strong class="font-semibold">부작용 제거:</strong> 기존 원료가 가진 자극/트러블 요소를 완벽하게 보완하여 안전합니다.</div>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-zion-dark text-2xl mr-3">✓</span>
-                                <div><strong class="font-semibold">효능 강화:</strong> 탈모방지, 피부 개선 등 본래 목적을 극대화하여 '진짜 효과'를 체감하게 합니다.</div>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-zion-dark text-2xl mr-3">✓</span>
-                                <div><strong class="font-semibold">광범위한 적용:</strong> 샴푸, 스킨케어, 의약·헬스케어 등 다양한 분야에 적용 가능한 범용성.</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="h-[400px] rounded-xl overflow-hidden shadow-xl">
-                        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop" alt="SiZen illustration" class="w-full h-full object-cover">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- 5. Product Categories (Visual Expansion Strategy - like reference image) -->
-        <section id="products" class="py-16 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 text-center">
-                <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Explore Our Solutions</p>
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-12">
-                    Zion의 제품 카테고리
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <!-- Category 1: 뷰티 & 퍼스널 케어 (Larger Card) -->
-                    <a href="shop.html" class="group relative h-96 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop" alt="Beauty & Personal Care" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex flex-col justify-end p-8">
-                            <p class="text-white text-base uppercase font-medium mb-1">Step 1 & 2 Focus</p>
-                            <h3 class="text-white text-4xl font-extrabold">뷰티 & 퍼스널 케어</h3>
-                            <span class="text-white text-sm font-light mt-2">탈모방지 샴푸, 스킨케어, 기능성 화장품</span>
-                        </div>
-                    </a>
-                    <!-- Category 2: 헬스케어 & 웰니스 (Smaller Card) -->
-                    <a href="shop.html" class="group relative h-96 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop" alt="Healthcare & Wellness" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex flex-col justify-end p-8">
-                            <p class="text-white text-base uppercase font-medium mb-1">Step 3 & 4 Focus</p>
-                            <h3 class="text-white text-4xl font-extrabold">헬스케어 & 웰니스</h3>
-                            <span class="text-white text-sm font-light mt-2">예방의학, 건강보조제, 의료기기</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- Additional Image Row (like reference) -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                    <a href="shop.html" class="group relative h-64 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop" alt="New Shampoo Line" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex items-end p-6">
-                            <p class="text-white text-xl font-bold border-b-2 border-white pb-1">탈모방지 신제품</p>
-                        </div>
-                    </a>
-                    <a href="shop.html" class="group relative h-64 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop" alt="Functional Cosmetics" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex items-end p-6">
-                            <p class="text-white text-xl font-bold border-b-2 border-white pb-1">기능성 화장품</p>
-                        </div>
-                    </a>
-                    <a href="shop.html" class="group relative h-64 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop" alt="Bio & Materials" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex items-end p-6">
-                            <p class="text-white text-xl font-bold border-b-2 border-white pb-1">바이오 소재</p>
-                        </div>
-                    </a>
-                </div>
-
-                <a href="shop.html" class="btn-secondary mt-8">
-                    모든 제품 살펴보기
-                </a>
-            </div>
-        </section>
-        
-        <!-- 6. 5-Year Roadmap (Simplified and styled to fit) -->
-        <section id="roadmap" class="py-16 md:py-24 bg-zion-section-bg">
-            <div class="max-w-7xl mx-auto px-4 text-center">
-                <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Future</p>
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-12">
-                    Zion 5개년 로드맵
-                </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                    <!-- Year 1-2 -->
-                    <div class="p-8 bg-white rounded-xl shadow-lg">
-                        <span class="text-4xl font-bold text-zion-accent-text-green mb-4 block">1-2년차</span>
-                        <h4 class="text-2xl font-bold mb-3">기반 구축 & 시장 진입</h4>
-                        <p class="text-base text-zion-medium mb-2">
-                            핵심 목표: 기술 신뢰성 확보, 초기 시장 진입 및 브랜드 구축
-                        </p>
-                        <ul class="list-disc list-inside text-sm text-zion-medium space-y-1">
-                            <li>시젠 특허 등록, 임상 데이터 확보</li>
-                            <li>탈모방지 샴푸, 스킨케어 파일럿 출시</li>
-                            <li>D2C 플랫폼 론칭, 해외 초기 진출</li>
-                        </ul>
-                    </div>
-                    <!-- Year 3-4 -->
-                    <div class="p-8 bg-white rounded-xl shadow-lg">
-                        <span class="text-4xl font-bold text-zion-accent-text-green mb-4 block">3-4년차</span>
-                        <h4 class="text-2xl font-bold mb-3">글로벌 확장 & 다각화</h4>
-                        <p class="text-base text-zion-medium mb-2">
-                            핵심 목표: 글로벌 프리미엄 브랜드 정착, 헬스·바이오 영역 확장
-                        </p>
-                        <ul class="list-disc list-inside text-sm text-zion-medium space-y-1">
-                            <li>FDA, CE 등 글로벌 인증 확보</li>
-                            <li>글로벌 R&D 협력, 학술 논문 발표</li>
-                            <li>건강보조제, 의료기기 적용 연구</li>
-                        </ul>
-                    </div>
-                    <!-- Year 5 -->
-                    <div class="p-8 bg-white rounded-xl shadow-lg">
-                        <span class="text-4xl font-bold text-zion-accent-text-green mb-4 block">5년차</span>
-                        <h4 class="text-2xl font-bold mb-3">글로벌 리더십 & 플랫폼화</h4>
-                        <p class="text-base text-zion-medium mb-2">
-                            핵심 목표: 글로벌 웰니스 & 바이오 혁신 브랜드 확립
-                        </p>
-                        <ul class="list-disc list-inside text-sm text-zion-medium space-y-1">
-                            <li>Zion Wellness Ecosystem 구축</li>
-                            <li>글로벌 파트너십 확대, Zion Lab 설립</li>
-                            <li>세계 시장 점유율 Top Tier 진입</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. Call to Action / Slogan -->
-        <section id="contact" class="py-20 md:py-28 bg-zion-dark text-white text-center">
-            <div class="max-w-5xl mx-auto px-4">
-                <p class="text-xl font-light mb-4 text-zion-light">
-                    Where Science Connects With Light
-                </p>
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-8">
-                    Zion과 함께 당신의 빛을 되찾으세요.
-                </h2>
-                <a href="shop.html" class="btn-secondary !bg-white !text-zion-dark hover:!bg-gray-100">
-                    지금 바로 문의하기
-                </a>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-zion-background text-zion-medium py-10 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
-            <h5 class="text-2xl font-bold mb-4 text-zion-dark">ZION</h5>
-            <div class="flex flex-wrap justify-center space-x-6 mb-4">
-                <a href="#about" class="hover:text-zion-dark transition duration-300">브랜드 스토리</a>
-                <a href="#si-zen" class="hover:text-zion-dark transition duration-300">핵심 소재</a>
-                <a href="#products" class="hover:text-zion-dark transition duration-300">제품</a>
-                <a href="#roadmap" class="hover:text-zion-dark transition duration-300">로드맵</a>
-                <a href="#contact" class="hover:text-zion-dark transition duration-300">문의</a>
-            </div>
-            <p class="mb-2 font-light">E-mail: info@zion.com | Tel: 02-XXX-XXXX</p>
-            <p class="text-xs font-extralight">&copy; 2025 Zion Corp. All rights reserved.</p>
+        <div class="md:w-1/2 flex items-center justify-center bg-gray-100 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop"
+               alt="Product Showcase" class="w-full h-full object-cover">
+          <div class="absolute bottom-6 right-6 p-3 bg-white rounded-lg shadow-lg flex items-center space-x-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            <span class="text-sm font-medium text-zion-dark">지금 바로 경험하세요!</span>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
+    <!-- AI Slogan -->
+    <section id="slogan-generator" class="py-16 md:py-24 bg-ai-blue">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h3 class="text-4xl font-extrabold mb-4 text-ai-blue">AI 슬로건 제안 받기</h3>
+        <p class="text-lg text-ai-blue mb-8 opacity-90">키워드 1~3개 입력 → 즉시 한국어/영어 슬로건 생성</p>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+          <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-6">
+            <input id="slogan-keywords" type="text" placeholder="키워드 입력 (예: 안전, 회복, 빛남)"
+                   class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-teal-600 focus:border-teal-600" />
+            <button id="slogan-button" onclick="generateSlogan()" class="btn-ai">
+              슬로건 생성
+            </button>
+          </div>
+          <div id="slogan-loading" class="hidden text-center text-ai-blue font-medium mb-4">
+            <span class="animate-pulse">슬로건을 생성 중입니다...</span>
+          </div>
+          <div id="slogan-result" class="text-left min-h-[50px]"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-16 md:py-24 bg-zion-section-bg">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="text-left">
+            <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Story</p>
+            <h3 class="text-4xl font-bold mb-6">효과와 안전성, 두 마리 토끼를 잡다</h3>
+            <p class="text-lg mb-6 text-zion-medium">
+              현재 헬스·뷰티 시장은 "효과"와 "안전성"이라는 두 과제를 동시에 안고 있습니다.
+            </p>
+            <p class="text-lg font-medium mb-6">
+              소비자들은 "부담은 줄이고 체감은 높이는 경험"을 원합니다. Zion은 이 문제에 대한 해답을 제시합니다.
+            </p>
+            <a href="#why-us" class="inline-flex items-center text-zion-dark font-medium hover:text-zion-medium transition duration-300">
+              Zion의 해결책 알아보기 <span class="ml-2 text-xl">&rarr;</span>
+            </a>
+          </div>
+          <div class="space-y-6">
+            <div class="h-60 rounded-xl overflow-hidden shadow-lg">
+              <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop"
+                   alt="Consumer Dilemma" class="w-full h-full object-cover">
+            </div>
+            <div class="grid grid-cols-2 gap-6">
+              <div class="h-40 rounded-xl overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop"
+                     alt="Skin improvement" class="w-full h-full object-cover">
+              </div>
+              <div class="h-40 rounded-xl overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop"
+                     alt="Safe Ingredients" class="w-full h-full object-cover">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why-us" class="py-16 md:py-24 bg-white text-center">
+      <div class="max-w-7xl mx-auto px-4">
+        <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Core Values</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-12">왜 Zion인가요?</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative max-w-5xl mx-auto">
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10 hidden md:flex">
+            <div class="w-64 h-64 flex items-center justify-center bg-green-200 rounded-full opacity-10">
+              <span class="text-4xl font-bold text-zion-dark opacity-80">WHY US?</span>
+            </div>
+          </div>
+
+          <div class="why-us-item" data-number="01">
+            <p class="why-us-title">혁신적 합성소재 (SiZen)</p>
+            <p class="text-sm text-zion-medium">SiO₂ + ZnO 복합 컨셉으로 제품 경험을 더 안정적으로 설계합니다.</p>
+          </div>
+
+          <div class="why-us-item md:mt-16" data-number="02">
+            <p class="why-us-title">과학적 진정성</p>
+            <p class="text-sm text-zion-medium">데이터 기반 커뮤니케이션으로 신뢰를 설계합니다.</p>
+          </div>
+
+          <div class="why-us-item" data-number="03">
+            <p class="why-us-title">범용성 및 확장성</p>
+            <p class="text-sm text-zion-medium">뷰티·헬스케어를 넘어 다양한 적용 가능성을 탐색합니다.</p>
+          </div>
+
+          <div class="why-us-item md:mt-16" data-number="04">
+            <p class="why-us-title">본질의 빛 회복</p>
+            <p class="text-sm text-zion-medium">일상의 컨디션을 정돈해 ‘나답게 빛나는’ 순간을 돕습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SiZen -->
+    <section id="si-zen" class="py-16 md:py-24 bg-zion-section-bg">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Core Technology</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-4">SiZen: 차이를 만드는 핵심 컨셉</h2>
+
+        <div class="flex justify-center items-center space-x-4 mb-12">
+          <button onclick="playTts('sizen-benefits', this)" class="btn-ai">핵심 설명 음성 듣기</button>
+          <span id="tts-loading" class="hidden text-sm font-medium text-ai-blue">로딩 중...</span>
+          <span id="tts-error" class="text-sm text-red-500"></span>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="text-left space-y-6">
+            <p class="text-xl font-medium text-zion-dark leading-relaxed">
+              시젠(SiO₂ + ZnO)은 제품이 목표로 하는 사용 경험을 더 안정적으로 구현하기 위한 Zion의 소재/기술 컨셉입니다.
+            </p>
+            <ul class="space-y-4 text-lg text-zion-medium">
+              <li class="flex items-start"><span class="text-zion-dark text-2xl mr-3">✓</span><div><strong class="font-semibold">부담 최소화:</strong> 일상 사용성을 우선합니다.</div></li>
+              <li class="flex items-start"><span class="text-zion-dark text-2xl mr-3">✓</span><div><strong class="font-semibold">목적성 강화:</strong> 카테고리 목적에 맞는 체감 설계를 지향합니다.</div></li>
+              <li class="flex items-start"><span class="text-zion-dark text-2xl mr-3">✓</span><div><strong class="font-semibold">적용 확장:</strong> 샴푸/스킨케어 등으로 확장 가능한 컨셉.</div></li>
+            </ul>
+          </div>
+          <div class="h-[400px] rounded-xl overflow-hidden shadow-xl">
+            <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop"
+                 alt="SiZen illustration" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Explore Our Solutions</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-12">Zion의 제품 카테고리</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <a href="shop.html" class="group relative h-96 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&h=600&fit=crop"
+                 alt="Beauty & Personal Care" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex flex-col justify-end p-8">
+              <p class="text-white text-base uppercase font-medium mb-1">Step 1 & 2 Focus</p>
+              <h3 class="text-white text-4xl font-extrabold">뷰티 & 퍼스널 케어</h3>
+              <span class="text-white text-sm font-light mt-2">탈모방지 샴푸, 스킨케어, 기능성 화장품</span>
+            </div>
+          </a>
+
+          <a href="shop.html" class="group relative h-96 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&h=600&fit=crop"
+                 alt="Healthcare & Wellness" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex flex-col justify-end p-8">
+              <p class="text-white text-base uppercase font-medium mb-1">Step 3 & 4 Focus</p>
+              <h3 class="text-white text-4xl font-extrabold">헬스케어 & 웰니스</h3>
+              <span class="text-white text-sm font-light mt-2">예방의학, 건강보조제, 의료기기</span>
+            </div>
+          </a>
+        </div>
+
+        <a href="shop.html" class="btn-secondary mt-8">모든 제품 살펴보기</a>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="py-16 md:py-24 bg-zion-section-bg">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-sm font-semibold uppercase text-zion-medium mb-2">Our Future</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-12">Zion 5개년 로드맵</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+          <div class="p-8 bg-white rounded-xl shadow-lg">
+            <span class="text-4xl font-bold text-green-700 mb-4 block">1-2년차</span>
+            <h4 class="text-2xl font-bold mb-3">기반 구축 & 시장 진입</h4>
+            <ul class="list-disc list-inside text-sm text-zion-medium space-y-1">
+              <li>시젠 특허/데이터 확보(예시)</li>
+              <li>샴푸/스킨케어 파일럿 출시</li>
+              <li>D2C 플랫폼 론칭</li>
+            </ul>
+          </div>
+          <div class="p-8 bg-white rounded-xl shadow-lg">
+            <span class="text-4xl font-bold text-green-700 mb-4 block">3-4년차</span>
+            <h4 class="text-2xl font-bold mb-3">글로벌 확장 & 다각화</h4>
+            <ul class="list-disc list-inside text-sm text-zion-medium space-y-1">
+              <li>글로벌 인증/협업 추진(예시)</li>
+              <li>학술/콘텐츠 기반 신뢰 강화</li>
+              <li>헬스케어 확장 R&D</li>
+            </ul>
+          </div>
+          <div class="p-8 bg-white rounded-xl shadow-lg">
+            <span class="text-4xl font-bold text-green-700 mb-4 block">5년차</span>
+            <h4 class="text-2xl font-bold mb-3">플랫폼화</h4>
+            <ul class="list-disc list-inside text-sm text-zion-medium space-y-1">
+              <li>웰니스 생태계 구축(예시)</li>
+              <li>파트너십 확대</li>
+              <li>Top Tier 목표</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 md:py-28 bg-zion-dark text-white text-center">
+      <div class="max-w-5xl mx-auto px-4">
+        <p class="text-xl font-light mb-4 text-zion-light">Where Science Connects With Light</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-8">Zion과 함께 당신의 빛을 되찾으세요.</h2>
+        <a href="shop.html" class="btn-secondary !bg-white !text-zion-dark hover:!bg-gray-100">지금 바로 구매하기</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-zion-background text-zion-medium py-10 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+      <h5 class="text-2xl font-bold mb-4 text-zion-dark">ZION</h5>
+      <p class="mb-2 font-light">E-mail: info@zion.com | Tel: 02-XXX-XXXX</p>
+      <p class="text-xs font-extralight">&copy; 2025 Zion Corp. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
