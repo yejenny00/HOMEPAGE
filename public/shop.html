@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZION SHOP - Shampoo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    body { font-family: 'Pretendard', sans-serif; background:#F8F8F8; color:#2F2F2F; }
+    .btn { background:#2F2F2F; color:#fff; padding:12px 18px; border-radius:10px; font-weight:600; }
+    .btn:disabled { opacity:.5; cursor:not-allowed; }
+    .card { background:#fff; border:1px solid #E5E7EB; border-radius:16px; }
+  </style>
+</head>
+
+<body>
+  <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-bold tracking-tight">ZION</a>
+      <div class="flex items-center gap-4">
+        <a href="/" class="text-sm text-gray-600 hover:text-gray-900">홈으로</a>
+        <button id="cart-open" class="text-sm font-semibold">장바구니 (<span id="cart-count">0</span>)</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-10 grid lg:grid-cols-3 gap-6">
+    <!-- Product -->
+    <section class="lg:col-span-2 card p-6">
+      <div class="grid md:grid-cols-2 gap-6 items-start">
+        <img class="w-full h-80 object-cover rounded-xl"
+          src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1200&h=900&fit=crop"
+          alt="ZION SiZen Scalp Shampoo" />
+
+        <div>
+          <p class="text-sm text-gray-500 mb-2">뷰티 & 퍼스널 케어</p>
+          <h1 class="text-3xl font-extrabold mb-2">ZION SiZen 스칼프 샴푸</h1>
+          <p class="text-gray-600 mb-4">
+            두피 컨디션을 편안하게 케어하고, 매일 쓰기 좋은 데일리 샴푸 콘셉트.
+          </p>
+
+          <div class="flex items-end gap-3 mb-6">
+            <span class="text-2xl font-extrabold">₩29,000</span>
+            <span class="text-sm text-gray-500">/ 300ml</span>
+          </div>
+
+          <div class="flex items-center gap-3 mb-6">
+            <label class="text-sm text-gray-700">수량</label>
+            <input id="qty" type="number" min="1" value="1"
+              class="w-20 border border-gray-300 rounded-lg px-3 py-2" />
+          </div>
+
+          <div class="flex gap-3">
+            <button id="add-to-cart" class="btn">장바구니 담기</button>
+            <button id="buy-now" class="btn" style="background:#388E3C;">바로 구매</button>
+          </div>
+
+          <div class="mt-6 text-sm text-gray-600">
+            - 배송: 2~3영업일(예시)<br/>
+            - 교환/반품: 미개봉 7일 이내(예시)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkout / Cart -->
+    <aside class="card p-6 h-fit">
+      <h2 class="text-xl font-bold mb-4">결제 정보</h2>
+
+      <div class="bg-gray-50 rounded-xl p-4 border border-gray-200 mb-4">
+        <div class="flex justify-between text-sm mb-1">
+          <span>상품 합계</span><span id="subtotal">₩0</span>
+        </div>
+        <div class="flex justify-between text-sm mb-1">
+          <span>배송비</span><span id="shipping">₩0</span>
+        </div>
+        <div class="flex justify-between text-base font-extrabold mt-3">
+          <span>총 결제금액</span><span id="total">₩0</span>
+        </div>
+      </div>
+
+      <form id="checkout-form" class="space-y-3">
+        <input required name="name" placeholder="받는 분 성함"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white" />
+        <input required name="phone" placeholder="연락처"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white" />
+        <input required name="address" placeholder="주소"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white" />
+
+        <select name="pay" class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white">
+          <option value="card">카드 결제(데모)</option>
+          <option value="bank">무통장(데모)</option>
+        </select>
+
+        <button id="pay-btn" class="btn w-full" type="submit" disabled>장바구니에 담아주세요</button>
+        <p class="text-xs text-gray-500">
+          데모 페이지입니다. 실제 결제 연동은 PG(토스페이먼츠/아임포트 등) API가 필요합니다.
+        </p>
+      </form>
+
+      <div id="toast" class="hidden mt-4 text-sm text-green-700 bg-green-50 border border-green-200 rounded-lg p-3"></div>
+    </aside>
+  </main>
+
+  <script>
+    const PRICE = 29000;
+
+    const state = {
+      count: 0,
+      qty: 0,
+      subtotal: 0,
+      shipping: 0,
+      total: 0,
+    };
+
+    const el = (id) => document.getElementById(id);
+    const won = (n) => "₩" + n.toLocaleString("ko-KR");
+
+    function calcShipping(subtotal) {
+      // 예시 정책: 50,000원 이상 무료배송, 아니면 3,000원
+      if (subtotal <= 0) return 0;
+      return subtotal >= 50000 ? 0 : 3000;
+    }
+
+    function render() {
+      el("cart-count").textContent = state.count;
+      el("subtotal").textContent = won(state.subtotal);
+      el("shipping").textContent = won(state.shipping);
+      el("total").textContent = won(state.total);
+
+      const payBtn = el("pay-btn");
+      if (state.count > 0) {
+        payBtn.disabled = false;
+        payBtn.textContent = `결제하기 (${won(state.total)})`;
+      } else {
+        payBtn.disabled = true;
+        payBtn.textContent = "장바구니에 담아주세요";
+      }
+    }
+
+    function addToCart(qty) {
+      const q = Math.max(1, parseInt(qty, 10) || 1);
+      state.qty += q;
+      state.count = state.qty;
+      state.subtotal = state.qty * PRICE;
+      state.shipping = calcShipping(state.subtotal);
+      state.total = state.subtotal + state.shipping;
+      render();
+      toast(`장바구니에 ${q}개 담았습니다.`);
+    }
+
+    function toast(msg) {
+      const t = el("toast");
+      t.textContent = msg;
+      t.classList.remove("hidden");
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => t.classList.add("hidden"), 2500);
+    }
+
+    el("add-to-cart").addEventListener("click", () => addToCart(el("qty").value));
+    el("buy-now").addEventListener("click", () => {
+      addToCart(el("qty").value);
+      document.querySelector("#checkout-form input[name='name']").focus();
+    });
+
+    el("checkout-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (state.count <= 0) return;
+
+      // 데모 주문 완료 처리
+      state.count = 0; state.qty = 0; state.subtotal = 0; state.shipping = 0; state.total = 0;
+      render();
+      e.target.reset();
+      toast("주문이 완료되었습니다(데모).");
+    });
+
+    render();
+  </script>
+</body>
+</html>
