@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZION - Main</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Pretendard -->
   <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
@@ -21,14 +18,14 @@
 
     .btn-primary {
       background:#2F2F2F; color:#fff; padding:12px 22px; border-radius:12px;
-      font-weight:700; transition:all .15s ease;
+      font-weight:800; transition:all .15s ease;
       display:inline-flex; align-items:center; justify-content:center;
     }
     .btn-primary:hover { background:#464646; }
 
     .btn-secondary {
       background:#fff; color:#2F2F2F; border:1px solid #D1D1D1;
-      padding:12px 22px; border-radius:12px; font-weight:700;
+      padding:12px 22px; border-radius:12px; font-weight:800;
       transition:all .15s ease;
       display:inline-flex; align-items:center; justify-content:center;
     }
@@ -36,7 +33,7 @@
 
     .btn-ai {
       background:#00838F; color:#fff; padding:12px 18px; border-radius:12px;
-      font-weight:800; transition:all .15s ease;
+      font-weight:900; transition:all .15s ease;
     }
     .btn-ai:hover { background:#006064; }
     .btn-ai:disabled { opacity:.6; cursor:not-allowed; }
@@ -54,6 +51,8 @@
       }[m]));
     }
 
+    // GitHub Pages(정적)에서는 서버(/api/slogan)가 없으면 실패할 수 있어,
+    // 실패 시 "데모 슬로건"을 보여주도록 안전장치까지 포함.
     async function generateSlogan() {
       const keywords = document.getElementById('slogan-keywords').value.trim();
       const resultDiv = document.getElementById('slogan-result');
@@ -61,7 +60,7 @@
       const loading = document.getElementById('slogan-loading');
 
       if (!keywords) {
-        resultDiv.innerHTML = `<p class="text-red-600 font-medium">키워드를 1~3개 입력해 주세요. (예: 안전, 회복, 빛남)</p>`;
+        resultDiv.innerHTML = `<p class="text-red-600 font-medium">키워드를 1~3개 입력해 주세요.</p>`;
         return;
       }
 
@@ -70,43 +69,51 @@
       resultDiv.innerHTML = '';
 
       try {
-        const res = await fetch('/api/slogan', {
+        const res = await fetch('./api/slogan', {   // 같은 도메인 서버가 있을 때 동작
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ keywords })
         });
 
-        if (!res.ok) throw new Error(`Server ${res.status}`);
-
+        if (!res.ok) throw new Error(`API ${res.status}`);
         const data = await res.json();
+
         if (!data?.slogans?.length) throw new Error('No slogans');
 
-        let html = '<div class="space-y-3 mt-4">';
-        data.slogans.forEach(s => {
-          const lang = (s.language || '').toLowerCase();
-          const label = lang.includes('kor') ? '한국어' : 'English';
-          html += `
-            <div class="p-4 rounded-2xl border border-gray-200 bg-gray-50">
-              <p class="text-xs text-gray-500 mb-1">${label}</p>
-              <p class="text-lg font-extrabold">${escapeHtml(s.text)}</p>
-            </div>
-          `;
-        });
-        html += '</div>';
+        renderSlogans(data.slogans, resultDiv);
 
-        resultDiv.innerHTML = html;
       } catch (e) {
-        resultDiv.innerHTML = `<p class="text-red-600 font-medium">오류: ${escapeHtml(e.message)}</p>`;
+        // 정적 배포(GitHub Pages) 등에서 서버가 없으면 여기로 옴
+        const demo = [
+          { language: "Korean", text: `과학으로 빛나는 루틴, ${keywords}` },
+          { language: "English", text: `Science-made radiance, ${keywords}` }
+        ];
+        renderSlogans(demo, resultDiv, true);
       } finally {
         loading.classList.add('hidden');
         btn.disabled = false;
       }
     }
+
+    function renderSlogans(slogans, resultDiv, isDemo=false) {
+      let html = `<div class="space-y-3 mt-4">`;
+      slogans.forEach(s => {
+        const lang = (s.language || '').toLowerCase();
+        const label = lang.includes('kor') ? '한국어' : 'English';
+        html += `
+          <div class="p-4 rounded-2xl border border-gray-200 bg-gray-50">
+            <p class="text-xs text-gray-500 mb-1">${label}${isDemo ? ' (DEMO)' : ''}</p>
+            <p class="text-lg font-extrabold">${escapeHtml(s.text)}</p>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      resultDiv.innerHTML = html;
+    }
   </script>
 </head>
 
 <body>
-  <!-- Header -->
   <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <div class="flex items-center gap-4">
@@ -116,9 +123,8 @@
 
       <nav class="hidden md:flex items-center gap-6">
         <a href="#about" class="text-sm font-semibold text-zion-medium hover:text-gray-900 transition">브랜드</a>
-        <a href="#ai" class="text-sm font-semibold text-zion-medium hover:text-gray-900 transition">AI 슬로건</a>
+        <a href="#ai" class="text-sm font-semibold text-zion-medium hover:text-gray-900 transition">AI</a>
         <a href="#shops" class="text-sm font-semibold text-zion-medium hover:text-gray-900 transition">카테고리</a>
-        <a href="#contact" class="text-sm font-semibold text-zion-medium hover:text-gray-900 transition">문의</a>
       </nav>
 
       <div class="flex items-center gap-2">
@@ -129,7 +135,6 @@
   </header>
 
   <main>
-    <!-- Hero -->
     <section class="py-10 md:py-0">
       <div class="max-w-7xl mx-auto grid md:grid-cols-2 min-h-[640px]">
         <div class="flex flex-col justify-center px-4 md:px-10 py-12">
@@ -139,27 +144,12 @@
             본질의 빛을 <span class="text-green-700">회복</span>시키다
           </h2>
           <p class="text-lg md:text-xl text-zion-medium mb-8">
-            Beauty와 Wellness를 분리한 2개의 구매 경험 + AI 슬로건 기능.
+            Beauty(샴푸)와 Wellness(보조제) 구매 페이지를 분리했습니다.
           </p>
 
           <div class="flex flex-col sm:flex-row gap-3">
             <a href="#shops" class="btn-primary">카테고리 바로가기</a>
-            <a href="#ai" class="btn-secondary">AI 슬로건 생성</a>
-          </div>
-
-          <div class="mt-8 grid grid-cols-3 gap-3 text-sm">
-            <div class="card p-4">
-              <p class="text-xs text-gray-500 mb-1">Beauty</p>
-              <p class="font-extrabold">샴푸 구매</p>
-            </div>
-            <div class="card p-4">
-              <p class="text-xs text-gray-500 mb-1">Wellness</p>
-              <p class="font-extrabold">골든타임 보조제</p>
-            </div>
-            <div class="card p-4">
-              <p class="text-xs text-gray-500 mb-1">AI</p>
-              <p class="font-extrabold">슬로건 생성</p>
-            </div>
+            <a href="#ai" class="btn-secondary">AI 슬로건</a>
           </div>
         </div>
 
@@ -170,23 +160,18 @@
             class="w-full h-full object-cover"
           />
           <div class="absolute inset-0 bg-black/15"></div>
-          <div class="absolute bottom-6 right-6 card px-4 py-3">
-            <p class="text-sm font-extrabold">오늘의 루틴을 시작하세요</p>
-            <p class="text-xs text-gray-500">Beauty / Wellness</p>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- About -->
     <section id="about" class="py-16 md:py-20 bg-zion-section">
       <div class="max-w-7xl mx-auto px-4">
         <div class="grid md:grid-cols-2 gap-8 items-center">
           <div class="card p-8">
             <p class="text-xs font-extrabold uppercase tracking-wide text-zion-medium mb-2">Brand Story</p>
-            <h3 class="text-3xl md:text-4xl font-extrabold mb-4">효과와 안전성 사이, 균형을 설계하다</h3>
+            <h3 class="text-3xl md:text-4xl font-extrabold mb-4">균형을 설계하다</h3>
             <p class="text-zion-medium">
-              Zion은 “부담은 줄이고, 체감은 선명하게”라는 방향성으로 제품 경험과 커뮤니케이션을 디자인합니다.
+              Zion은 루틴과 경험 중심의 헬스·뷰티 브랜드 컨셉입니다.
             </p>
           </div>
           <div class="card overflow-hidden">
@@ -200,12 +185,11 @@
       </div>
     </section>
 
-    <!-- AI -->
     <section id="ai" class="py-16 md:py-20 bg-ai">
       <div class="max-w-4xl mx-auto px-4 text-center">
         <h3 class="text-4xl font-extrabold mb-4 text-ai">AI 슬로건 생성</h3>
         <p class="text-base md:text-lg text-ai opacity-90 mb-8">
-          키워드 1~3개 입력 → 한국어/영어 슬로건 2개를 자동 생성합니다.
+          서버가 연결된 환경이면 AI가 생성하고, 아니면 DEMO 슬로건이 표시됩니다.
         </p>
 
         <div class="card p-8 text-left">
@@ -214,11 +198,9 @@
               id="slogan-keywords"
               type="text"
               placeholder="키워드 입력 (예: 안전, 회복, 빛남)"
-              class="flex-grow p-3 border border-gray-300 rounded-xl focus:ring-teal-600 focus:border-teal-600"
+              class="flex-grow p-3 border border-gray-300 rounded-xl"
             />
-            <button id="slogan-button" onclick="generateSlogan()" class="btn-ai">
-              슬로건 생성
-            </button>
+            <button id="slogan-button" onclick="generateSlogan()" class="btn-ai">슬로건 생성</button>
           </div>
 
           <div id="slogan-loading" class="hidden mt-4 text-ai font-extrabold">
@@ -226,22 +208,16 @@
           </div>
 
           <div id="slogan-result" class="mt-4 min-h-[60px]"></div>
-
-          <p class="mt-6 text-xs text-gray-500">
-            참고: 실제 서비스 배포 시 API 키는 브라우저에 넣지 말고 서버에서 호출하세요.
-          </p>
         </div>
       </div>
     </section>
 
-    <!-- Shops -->
     <section id="shops" class="py-16 md:py-20 bg-white">
       <div class="max-w-7xl mx-auto px-4 text-center">
         <p class="text-xs font-extrabold uppercase tracking-wide text-zion-medium mb-2">Shop Categories</p>
         <h3 class="text-4xl md:text-5xl font-extrabold mb-10">원하는 스토어로 이동</h3>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Beauty -> beauty.html -->
           <a href="beauty.html" class="group relative overflow-hidden rounded-3xl shadow-lg h-96">
             <img
               src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1600&h=1200&fit=crop"
@@ -252,11 +228,9 @@
             <div class="absolute bottom-0 left-0 right-0 p-8 text-left">
               <p class="text-white/80 text-sm font-extrabold mb-1">Beauty & Personal Care</p>
               <h4 class="text-white text-4xl font-extrabold">샴푸 구매</h4>
-              <p class="text-white/80 text-sm mt-2">클릭하면 샴푸 이미지 중심 페이지로 이동</p>
             </div>
           </a>
 
-          <!-- Wellness -> wellness.html -->
           <a href="wellness.html" class="group relative overflow-hidden rounded-3xl shadow-lg h-96">
             <img
               src="https://images.unsplash.com/photo-1585238342028-4e6fbe685a2a?w=1600&h=1200&fit=crop"
@@ -266,31 +240,9 @@
             <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition"></div>
             <div class="absolute bottom-0 left-0 right-0 p-8 text-left">
               <p class="text-white/80 text-sm font-extrabold mb-1">Healthcare & Wellness</p>
-              <h4 class="text-white text-4xl font-extrabold">골든타임 보조제 구매</h4>
-              <p class="text-white/80 text-sm mt-2">별도 웰니스 사이트 톤으로 이동</p>
+              <h4 class="text-white text-4xl font-extrabold">골든타임 보조제</h4>
             </div>
           </a>
-        </div>
-
-        <div class="mt-8 flex justify-center gap-3">
-          <a href="beauty.html" class="btn-secondary">Beauty Shop</a>
-          <a href="wellness.html" class="btn-primary">Wellness Shop</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="py-20 bg-gray-900 text-white text-center">
-      <div class="max-w-5xl mx-auto px-4">
-        <p class="text-lg font-light text-gray-300 mb-4">Where Science Connects With Light</p>
-        <h3 class="text-4xl md:text-5xl font-extrabold mb-8">Zion과 함께 루틴을 설계하세요.</h3>
-        <div class="flex flex-col sm:flex-row justify-center gap-3">
-          <a href="beauty.html" class="btn-secondary !bg-white !text-gray-900">Beauty 구매</a>
-          <a href="wellness.html" class="btn-secondary !bg-white !text-gray-900">Wellness 구매</a>
-        </div>
-
-        <div class="mt-8 text-sm text-gray-400">
-          E-mail: info@zion.com · Tel: 02-XXX-XXXX
         </div>
       </div>
     </section>
