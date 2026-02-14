@@ -30,7 +30,6 @@
   </header>
 
   <main class="max-w-6xl mx-auto px-4 py-10">
-    <!-- Hero: shampoo image -->
     <section class="card overflow-hidden mb-6">
       <div class="grid md:grid-cols-2">
         <div class="p-8 md:p-10">
@@ -44,7 +43,7 @@
         </div>
         <div class="h-72 md:h-auto">
           <img
-            src="https://unsplash.com/photos/a-bottle-of-shampoo-next-to-a-glass-of-water-RsohkU8mrxU/download?force=true&w=1600"
+            src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1600&h=1200&fit=crop"
             alt="Shampoo hero"
             class="w-full h-full object-cover"
           />
@@ -52,12 +51,11 @@
       </div>
     </section>
 
-    <!-- Product + Checkout -->
     <section id="product" class="grid lg:grid-cols-3 gap-6">
       <div class="lg:col-span-2 card p-6">
         <div class="grid md:grid-cols-2 gap-6 items-start">
           <img class="w-full h-80 object-cover rounded-2xl"
-               src="https://unsplash.com/photos/a-bottle-of-shampoo-next-to-a-glass-of-water-RsohkU8mrxU/download?force=true&w=1200"
+               src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1200&h=900&fit=crop"
                alt="ZION Shampoo" />
 
           <div>
@@ -96,9 +94,12 @@
         </div>
 
         <form id="checkoutForm" class="space-y-3">
-          <input required name="name" placeholder="받는 분 성함" class="w-full border border-gray-300 rounded-xl px-3 py-2 bg-white" />
-          <input required name="phone" placeholder="연락처" class="w-full border border-gray-300 rounded-xl px-3 py-2 bg-white" />
-          <input required name="address" placeholder="주소" class="w-full border border-gray-300 rounded-xl px-3 py-2 bg-white" />
+          <input required name="name" placeholder="받는 분 성함"
+                 class="w-full border border-gray-300 rounded-xl px-3 py-2 bg-white" />
+          <input required name="phone" placeholder="연락처"
+                 class="w-full border border-gray-300 rounded-xl px-3 py-2 bg-white" />
+          <input required name="address" placeholder="주소"
+                 class="w-full border border-gray-300 rounded-xl px-3 py-2 bg-white" />
           <button id="payBtn" class="btn w-full" type="submit" disabled>장바구니에 담아주세요</button>
         </form>
 
